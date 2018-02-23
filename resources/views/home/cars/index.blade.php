@@ -1,4 +1,5 @@
 @extends('layouts.home')
+
 @section('main')
     <main id="mainContent" class="main-content">
         <div class="page-container">
@@ -111,8 +112,6 @@
                 </div>
             </div>
         </div>
-
-
     </main>
 @endsection
 
