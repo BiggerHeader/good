@@ -37,7 +37,8 @@
                                             <td class="prices">{{ $car->product->price }}</td>
                                             <td>
                                                 <button class="reduce">-</button>
-                                                <input class="quantity-label count" type="number" value="{{ $car->numbers }}" style="width: 20px" readonly>
+                                                <input class="quantity-label count" type="number"
+                                                       value="{{ $car->numbers }}" style="width: 20px" readonly>
                                                 <button class="add">+</button>
                                             </td>
                                             <td>
@@ -56,53 +57,76 @@
                                 <div class="t-right">
                                     <!-- Checkout Area -->
                                     <section class="section checkout-area panel prl-30 pt-20 pb-40">
-                                        <h2 class="h3 mb-20 h-title">支付信息</h2>
-                                        @if (session()->has('status'))
+                                        <h2 class="h3 mb-20 h-title">订单信息</h2>
+                                        {{--@if (session()->has('status'))
                                             <div class="alert alert-success alert-dismissible" role="alert">
                                                 <button type="button" class="close" data-dismiss="alert"
                                                         aria-label="Close"><span aria-hidden="true">&times;</span>
                                                 </button>
                                                 {{ session('status') }}
                                             </div>
-                                        @endif
+                                        @endif--}}
 
 
+                                        {{-- <form class="mb-30" method="post" action="{{ url('/user/orders/') }}">
+                                             {{ csrf_field() }}
+
+                                             <div class="row">
+
+                                                 @if ($errors->has('address_id'))
+                                                     <div class="alert alert-danger" role="alert">
+                                                         <button type="button" class="close" data-dismiss="alert"
+                                                                 aria-label="Close"><span
+                                                                     aria-hidden="true">&times;</span></button>
+                                                         {{ $errors->first('address_id') }}
+                                                     </div>
+                                                 @endif
+                                                 <div class="col-md-4">
+                                                     <div class="form-group">
+                                                         <label>选择收货地址</label>
+                                                         <select class="form-control" name="address_id">
+                                                             <option value="">请选择收货地址</option>
+                                                             @if (Auth::check())
+                                                                 @foreach (Auth::user()->addresses as $address)
+                                                                     <option value="{{ $address->id }}">{{ $address->name }}
+                                                                         /{{ $address->phone }}</option>
+                                                                 @endforeach
+                                                             @endif
+                                                         </select>
+                                                     </div>
+                                                 </div>
+                                             </div>
+
+                                             @auth
+                                                 <button type="submit" class="btn btn-lg btn-rounded mr-10">下单</button>
+                                             @endauth
+                                             @guest
+                                                 <a href="{{ url('login') }}?redirect_url={{ url()->current() }}"
+                                                    class="btn btn-lg btn-rounded mr-10">下单</a>
+                                             @endguest
+                                         </form>--}}
+
+
+                                        {{--订单信息 确认--}}
                                         <form class="mb-30" method="post" action="{{ url('/user/orders/') }}">
                                             {{ csrf_field() }}
-
                                             <div class="row">
-
-                                                @if ($errors->has('address_id'))
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <button type="button" class="close" data-dismiss="alert"
-                                                                aria-label="Close"><span
-                                                                    aria-hidden="true">&times;</span></button>
-                                                        {{ $errors->first('address_id') }}
-                                                    </div>
-                                                @endif
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>选择收货地址</label>
-                                                        <select class="form-control" name="address_id">
-                                                            <option value="">请选择收货地址</option>
-                                                            @if (Auth::check())
-                                                                @foreach (Auth::user()->addresses as $address)
-                                                                    <option value="{{ $address->id }}">{{ $address->name }}
-                                                                        /{{ $address->phone }}</option>
-                                                                @endforeach
-                                                            @endif
-                                                        </select>
-                                                    </div>
+                                                <div class="checkbox pull-left">
+                                                    <label>
+                                                        <input type="checkbox" value="">
+                                                        全选
+                                                    </label>
                                                 </div>
+                                                <span>已选择商品</span>
+                                                <span>合计</span>
+                                                @auth
+                                                    <button type="submit" class="btn btn-lg btn-rounded mr-10">下单</button>
+                                                @endauth
+                                                @guest
+                                                    <a href="{{ url('login') }}?redirect_url={{ url()->current() }}"
+                                                       class="btn btn-lg btn-rounded mr-10">下单</a>
+                                                @endguest
                                             </div>
-
-                                            @auth
-                                                <button type="submit" class="btn btn-lg btn-rounded mr-10">下单</button>
-                                            @endauth
-                                            @guest
-                                                <a href="{{ url('login') }}?redirect_url={{ url()->current() }}"
-                                                   class="btn btn-lg btn-rounded mr-10">下单</a>
-                                            @endguest
                                         </form>
                                     </section>
                                 </div>
@@ -118,7 +142,7 @@
 @section('script')
     <script src="{{ asset('assets/user/layer/2.4/layer.js') }}"></script>
     <script>
-        var token= '{{csrf_token()}}';
+        var token = '{{csrf_token()}}';
         var cars_url = "{{ url("/home/cars") }}/";
         $('.delete_car').click(function () {
             var that = $(this);
@@ -145,13 +169,13 @@
     </script>
 
     <script>
-        var reduce =$('.reduce');
-        var add =$('.add');
-        var count=$('.count');
-        for(var i=0; i<add.length; i++){
-            (function (){
+        var reduce = $('.reduce');
+        var add = $('.add');
+        var count = $('.count');
+        for (var i = 0; i < add.length; i++) {
+            (function () {
                 var p = i;
-                add[i].onclick = function(){
+                add[i].onclick = function () {
                     alert(this);
                 };
             })();
