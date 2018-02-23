@@ -141,7 +141,6 @@
                 var numbers = $(this).next().find('input').val();
                 total += price * numbers;
             });
-
             $('#cars_price').text(total);
         }
     </script>
