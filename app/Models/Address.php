@@ -5,7 +5,7 @@ namespace App\Models;
 class Address extends Model
 {
     protected $table = 'addresses';
-    protected $fillable = ['name', 'phone', 'province', 'city', 'region', 'detail_address', 'is_default', 'user_id'];
+    protected $fillable = ['name', 'phone', 'province', 'city', 'area', 'detail_address', 'is_default', 'user_id'];
 
     public function user()
     {

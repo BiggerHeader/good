@@ -51,8 +51,7 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
 
     // user address setting
     Route::post('/addresses/default/{address}', 'AddressesController@setDefaultAddress');
-    Route::get('/addresses/cities/{id}', 'AddressesController@getCities');
-    Route::get('/addresses/region/{id}', 'AddressesController@getRegion');
+    Route::get('/addresses/region/{pid}', 'AddressesController@getRegion');
     Route::resource('/addresses', 'AddressesController');
 
     // user products like, cancel like,
