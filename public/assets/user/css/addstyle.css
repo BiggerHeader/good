@@ -3,7 +3,10 @@
 [class*="am-u-"] {padding-left:0px; padding-right:0px;}
 .am-thumbnails > li {padding: 0 .5rem 0 .5rem;}
 .am-form textarea,.am-form select, .am-form textarea, .am-form input[type="text"], .am-form input[type="password"], .am-form input[type="datetime"], .am-form input[type="datetime-local"], .am-form input[type="date"], .am-form input[type="month"], .am-form input[type="time"], .am-form input[type="week"], .am-form input[type="tel"], .am-form input[type="email"], .am-form input[type="url"], .am-form input[type="search"], .am-form input[type="tel"], .am-form input[type="color"], .am-form-field,.am-btn{ font-size:14px;}
-.user-address {font-size:12px ;}
+.user-address {font-size:12px;background: #fff;border-top: 1px solid #fff;}
+.am-cf.am-padding {
+    margin: 20px 0 0 30px;
+}
 .am-thumbnails {margin:0px 0px ;margin-bottom: 50px;}
 .user-address li.user-addresslist {float: none;min-height:80px ;position: relative;border-bottom:1px solid #eee ;padding:15px 10px;}
 .new-tit {padding-bottom:7px ;font-size: 14px; position:relative;}

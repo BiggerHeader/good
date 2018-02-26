@@ -49,8 +49,9 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
     Route::post('/upload/avatar', 'UsersController@uploadAvatar');
     Route::put('/update', 'UsersController@update');
 
-    // user address setting
+    // user address  default setting
     Route::post('/addresses/default/{address}', 'AddressesController@setDefaultAddress');
+    //user  add address rollback
     Route::get('/addresses/region/{pid}', 'AddressesController@getRegion');
     Route::resource('/addresses', 'AddressesController');
 
@@ -61,7 +62,8 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
     // user order show and index
     Route::post('/orders/single', 'OrdersController@single');
     Route::resource('/orders', 'OrdersController', ['only' => ['index', 'store', 'show']]);
-
+    //user choose address  if not else redirect
+    Route::get('/choose/address/{order_id}', 'OrdersController@setOrderAddress')->name('choose_address');
     // user payments
     Route::post('/pay/show', 'PaymentsController@index');
     Route::post('/pay/store', 'PaymentsController@pay');

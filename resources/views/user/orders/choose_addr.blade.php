@@ -1,5 +1,7 @@
 @extends('layouts.home')
-
+@section('style')
+    <link href="{{ asset('assets/user/css/addstyle.css') }}" rel="stylesheet" type="text/css">
+@endsection
 @section('main')
     <main id="mainContent" class="main-content">
         <div class="page-container">
@@ -8,61 +10,59 @@
                     <div class="container">
                         <div class="cart-wrapper">
                             <div class="cart-price">
-                                <h3 class="h-title mb-30 t-uppercase">我的购物车</h3>
-                                {{--订单信息 确认--}}
+
+                                <div class="user-address">
+                                    <!--标题 -->
+                                    <div class="am-cf am-padding">
+                                        <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong>
+                                            /
+                                            <small>Address&nbsp;list</small>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
+
+                                        @foreach ($addresses as $item)
+                                            <li class="user-addresslist {{ $item['is_default'] ? 'defaultAddr' : '' }}">
+                        <span class="new-option-r default_addr" data-id="{{ $item['id'] }}">
+                            <i class="am-icon-check-circle"></i>默认地址
+                        </span>
+                                                <p class="new-tit new-p-re">
+                                                    <span class="new-txt">{{ $item['name'] }}</span>
+                                                    <span class="new-txt-rd2">{{ $item['phone'] }}</span>
+                                                </p>
+                                                <div class="new-mu_l2a new-p-re">
+                                                    <p class="new-mu_l2cw">
+                                                        <span class="title">地址：</span>
+                                                        <span class="province">{{ $item['province'] }}</span>省
+                                                        <span class="city">{{  $item['city'] }}</span>市
+                                                        <span class="dist">{{  $item['area'] }}</span>
+                                                        <br>
+                                                        <span class="street">{{ $item['detail_address'] }}</span></p>
+                                                </div>
+                                                <div class="new-addr-btn">
+                                                    <a href="{{ url("/user/addresses/{$item['id']}/edit") }}"><i
+                                                                class="am-icon-edit"></i>编辑</a>
+                                                    <span class="new-addr-bar">|</span>
+                                                    <a href="javascript:;" data-id="{{ $item['id'] }}"
+                                                       class="delete_address">
+                                                        <i class="am-icon-trash"></i>删除
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        @endforeach
+
+
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+
                                 <form class="mb-30" method="post" action="{{ url('/user/orders/') }}">
                                     {{ csrf_field() }}
-                                    <table id="cart_list" class="cart-list mb-30">
-                                        <thead class="panel t-uppercase">
-                                        <tr>
-                                            <th>商品名字</th>
-                                            <th>单价</th>
-                                            <th>数量</th>
-                                            <th>金额</th>
-                                            <th>删除</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="cars_data">
-                                        @inject('productPresenter', 'App\Presenters\ProductPresenter')
-                                        @foreach ($cars as $car)
-                                            <tr class="panel alert">
-                                                <td>
-                                                    <div class="media-body valign-middle">
-                                                        <h6 class="title mb-15 t-uppercase">
-                                                            <input type="checkbox" name="product_id[]"
-                                                                   value="{{$car->product->id}}">
-                                                            <a href="{{ url("/home/products/{$car->product->id}") }}">
-                                                                {{ $car->product->name }}
-                                                            </a>
-                                                        </h6>
-                                                    </div>
-                                                </td>
-                                                <td class="prices">{{ $car->product->price }}</td>
-                                                <td>
-                                                    <button type="button" class="reduce">-</button>
-                                                    <input class="quantity-label count" type="number" name="productid_number[{{$car->product->id}}]"
-                                                           value="{{ $car->numbers }}" style="width: 20px" readonly>
-                                                    <button type="button" class="add">+</button>
-                                                </td>
-                                                <td>
-                                                    <label style="color:red;">¥<input
-                                                                class="quantity-label single_total" type="number"
-                                                                value="{{ $car->numbers * $car->product->price }}"></label>
-                                                </td>
-                                                <td>
-                                                    <button data-id="{{ $car->id }}" class="close delete_car"
-                                                            type="button">
-                                                        <i class="fa fa-trash-o"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
                                     <div class="t-right">
                                         <!-- Checkout Area -->
                                         <section class="section checkout-area panel prl-30 pt-20 pb-40">
-                                            <h2 class="h3 mb-20 h-title">订单信息</h2>
+                                            <h2 class="h3 mb-20 h-title">支付</h2>
                                             {{--@if (session()->has('status'))
                                                 <div class="alert alert-success alert-dismissible" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert"
@@ -212,7 +212,7 @@
             }
             getTotal();
         })
-        $('.pull-left input').on('change', function() {
+        $('.pull-left input').on('change', function () {
             var value = $(this).prop('checked');
             $('#cars_data .panel input[type="checkbox"]').prop('checked', value);
             getTotal();

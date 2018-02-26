@@ -1592,10 +1592,11 @@
   color: #222;
 }
 .cart-list .quantity-label {
-  width: 45px;
+  width: 100px;
   border: 0;
   background: transparent;
   outline: none !important;
+  text-align: center;
 }
 .cart-list .sub-total {
   color: #2ed87b;
@@ -1609,6 +1610,7 @@
   opacity: 1;
 }
 .cart-price ul {
+  display: inline-block;
   padding: 15px 30px;
 }
 .cart-price ul li {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Requests\AddressRequest;
 use App\Models\Address;
+use App\Repositories\AddressRepository;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -120,15 +121,7 @@ class AddressesController extends Controller
 
     public function getUserAddress($province = null, $city = null)
     {
-        $addresses = $this->guard()->user()->addresses;
-        $where = [];
-        foreach ($addresses->toArray() as $address) {
-            $where[] = $address['area'];
-            $where[] = $address['city'];
-            $where[] = $address['province'];
-        }
-        $addr_name = DB::table('mbl_region')->whereIn('id', $where)->get()->toArray();
-        $addr_name = array_column($addr_name, 'name', 'id');
+        $addresses = AddressRepository::getAddreses();
         // Provincial and municipal regions
         $provinces = DB::table('mbl_region')->where('pid', 1)->get();
         if (empty($province) && empty($city)) {
@@ -139,6 +132,6 @@ class AddressesController extends Controller
             $areas = DB::table('mbl_region')->where('pid', $city)->get();
         }
 
-        return ['cities' => $cities, 'provinces' => $provinces, 'areas' => $areas, 'addr_name' => $addr_name, 'addresses' => $addresses];
+        return ['cities' => $cities, 'provinces' => $provinces, 'areas' => $areas, 'addresses' => $addresses];
     }
 }

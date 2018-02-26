@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\ProductDetail;
+use App\Repositories\AddressRepository;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -14,6 +15,15 @@ use Webpatser\Uuid\Uuid;
 
 class OrdersController extends Controller
 {
+
+    public function setOrderAddress($order_id)
+    {
+        if (!empty($order_id)) {
+            $addresses = AddressRepository::getAddreses();
+            //地址参数
+            return view('user.orders.choose_addr', compact('addresses'));
+        }
+    }
 
     public function index()
     {
@@ -24,7 +34,8 @@ class OrdersController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, ['address_id' => 'required'], ['address_id.required' => '收货地址不能为空']);
+        //$request->all()  获取 所有请求参数
+        $this->validate($request, ['productid_number.required' => '请选择商品']);
 
         // cars to orders
         $cars = $request->user()->cars()->with('product')->get();
@@ -33,36 +44,20 @@ class OrdersController extends Controller
             return back()->withErrors(['address_id' => '购物车为空，请选择商品后再结账']);
         }
 
-        // begin tran
-        DB::beginTransaction();
-        $order_data = $this->formatOrderData($request, $cars);
-
-        if ($order = $request->user()->orders()->create($order_data)) {
-            DB::rollBack();
+        $data = [];
+        $uuid = $this->formatOrderData($request, $cars);
+        $data['uuid'] = $uuid;
+        //计算总价
+        $data['total_money'] = $this->getTotal($cars);
+        $data['detail'] = serialize($request->post('productid_number'));
+        $data['user_id'] = $request->user()->id;
+        $res = Order::create($data);
+        //dd($data);
+        if (!$res) {
+            //with  重新设置session
             return back()->with('status', '服务器异常，请稍后再试');
         }
-
-        // 'numbers', 'product_id', 'order_id'
-        $order_detail_data = [];
-        foreach ($cars as $car) {
-            $order_detail_data[] = [
-                'order_id' => $order->id,
-                'product_id' => $car['product_id'],
-                'numbers' => $car['numbers']
-
-            ];
-        }
-
-        if (! OrderDetail::insert($order_detail_data)) {
-            DB::rollBack();
-            return back()->with('status', '服务器异常，请稍后再试');
-        }
-
-        // delete cars data
-        $request->user()->cars()->delete();
-
-        DB::commit();
-        return back()->with('status', '下单成功');
+        return redirect()->route('choose_address', ['order_id', $res->id]);
     }
 
 
@@ -129,11 +124,9 @@ class OrdersController extends Controller
 
     private function formatOrderData($request, $cars)
     {
-        $total = $this->getTotal($cars);
-        $uuid = Uuid::generate()->hex;
-        $address_id = $request->input('address_id');
-
-        return compact('total', 'uuid', 'address_id');
+        //$address_id = $request->input('address_id');
+        //generate  order  id
+        return Uuid::generate()->hex;
     }
 
     private function getTotal($cars)

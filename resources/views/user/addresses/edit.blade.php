@@ -19,28 +19,29 @@
             <hr/>
             <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 
-                @foreach ($data['addresses'] as $add)
-                    <li class="user-addresslist {{ $add->is_default ? 'defaultAddr' : '' }}">
-                         <span class="new-option-r default_addr" data-id="{{ $add->id }}">
+                @foreach ($data['addresses'] as $item)
+                    <li class="user-addresslist {{ $item['is_default'] ? 'defaultAddr' : '' }}">
+                        <span class="new-option-r default_addr" data-id="{{ $item['id'] }}">
                             <i class="am-icon-check-circle"></i>默认地址
                         </span>
                         <p class="new-tit new-p-re">
-                            <span class="new-txt">{{ $add->name }}</span>
-                            <span class="new-txt-rd2">{{ $add->phone }}</span>
+                            <span class="new-txt">{{ $item['name'] }}</span>
+                            <span class="new-txt-rd2">{{ $item['phone'] }}</span>
                         </p>
                         <div class="new-mu_l2a new-p-re">
                             <p class="new-mu_l2cw">
                                 <span class="title">地址：</span>
-                                <span class="province">{{ $data['addr_name'][$add->province] }}</span>省
-                                <span class="city">{{  $data['addr_name'][$add->city] }}</span>市
-                                <span class="dist">{{  $data['addr_name'][$add->area] }}</span>
+                                <span class="province">{{ $item['province'] }}</span>省
+                                <span class="city">{{  $item['city'] }}</span>市
+                                <span class="dist">{{  $item['area'] }}</span>
                                 <br>
-                                <span class="street">{{ $add->detail_address }}</span></p>
+                                <span class="street">{{ $item['detail_address'] }}</span></p>
                         </div>
                         <div class="new-addr-btn">
-                            <a href="{{ url("/user/addresses/{$add->id}/edit") }}"><i class="am-icon-edit"></i>编辑</a>
+                            <a href="{{ url("/user/addresses/{$item['id']}/edit") }}"><i
+                                        class="am-icon-edit"></i>编辑</a>
                             <span class="new-addr-bar">|</span>
-                            <a href="javascript:;" data-id="{{ $add->id }}" class="delete_address">
+                            <a href="javascript:;" data-id="{{ $item['id'] }}" class="delete_address">
                                 <i class="am-icon-trash"></i>删除
                             </a>
                         </div>
@@ -55,8 +56,6 @@
             <a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">修改地址</a>
             <!--例子-->
 
-
-            {{ csrf_field() }}
             <div class="am-modal am-modal-no-btn" id="doc-modal-1">
 
                 <div class="add-dress">

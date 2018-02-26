@@ -26,28 +26,28 @@
             <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 
                 @foreach ($data['addresses'] as $address)
-                    <li class="user-addresslist {{ $address->is_default ? 'defaultAddr' : '' }}">
-                        <span class="new-option-r default_addr" data-id="{{ $address->id }}">
+                    <li class="user-addresslist {{ $address['is_default'] ? 'defaultAddr' : '' }}">
+                        <span class="new-option-r default_addr" data-id="{{ $address['id'] }}">
                             <i class="am-icon-check-circle"></i>默认地址
                         </span>
                         <p class="new-tit new-p-re">
-                            <span class="new-txt">{{ $address->name }}</span>
-                            <span class="new-txt-rd2">{{ $address->phone }}</span>
+                            <span class="new-txt">{{ $address['name'] }}</span>
+                            <span class="new-txt-rd2">{{ $address['phone'] }}</span>
                         </p>
                         <div class="new-mu_l2a new-p-re">
                             <p class="new-mu_l2cw">
                                 <span class="title">地址：</span>
-                                <span class="province">{{ $data['addr_name'][$address->province] }}</span>省
-                                <span class="city">{{  $data['addr_name'][$address->city] }}</span>市
-                                <span class="dist">{{  $data['addr_name'][$address->area] }}</span>
+                                <span class="province">{{ $address['province'] }}</span>省
+                                <span class="city">{{  $address['city'] }}</span>市
+                                <span class="dist">{{  $address['area'] }}</span>
                                 <br>
-                                <span class="street">{{ $address->detail_address }}</span></p>
+                                <span class="street">{{ $address['detail_address'] }}</span></p>
                         </div>
                         <div class="new-addr-btn">
-                            <a href="{{ url("/user/addresses/{$address->id}/edit") }}"><i
+                            <a href="{{ url("/user/addresses/{$address['id']}/edit") }}"><i
                                         class="am-icon-edit"></i>编辑</a>
                             <span class="new-addr-bar">|</span>
-                            <a href="javascript:;" data-id="{{ $address->id }}" class="delete_address">
+                            <a href="javascript:;" data-id="{{ $address['id'] }}" class="delete_address">
                                 <i class="am-icon-trash"></i>删除
                             </a>
                         </div>
