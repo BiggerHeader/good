@@ -15,13 +15,31 @@ use Webpatser\Uuid\Uuid;
 
 class OrdersController extends Controller
 {
+    /*
+     * 保存 选择地址
+     * */
+    public function setOrderAddress(Request $request)
+    {
+        $this->validate($request, ['address_id.required' => '请选地址','id.required'=>'订单ID为空']);
+        $update_res = Order::where('id', $request->input('id'))->update(['address_id'=>$request->input('address_id')]);
+        if($update_res){
+            //跳转到支付页面
+            redirect('/pay/show');
+        }else{
+            echo 'error';
+        }
+    }
 
-    public function setOrderAddress($order_id)
+    /*
+     * 获取选择地址
+     * */
+    public function getChooseAddress($order_id)
     {
         if (!empty($order_id)) {
             $addresses = AddressRepository::getAddreses();
+            $data = Order::where('id', $order_id)->select('total_money','id')->first()->toArray();
             //地址参数
-            return view('user.orders.choose_addr', compact('addresses'));
+            return view('user.orders.choose_addr', compact('addresses', 'data'));
         }
     }
 
@@ -57,7 +75,7 @@ class OrdersController extends Controller
             //with  重新设置session
             return back()->with('status', '服务器异常，请稍后再试');
         }
-        return redirect()->route('choose_address', ['order_id', $res->id]);
+        return redirect()->route('choose_address', ['order_id' => $res->id]);
     }
 
 

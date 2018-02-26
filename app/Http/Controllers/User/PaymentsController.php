@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Api\ApiController;
 use App\Jobs\CreatePayment;
 use App\Models\Address;
+use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -15,16 +16,11 @@ use Webpatser\Uuid\Uuid;
 
 class PaymentsController extends ApiController
 {
-    public function index(Request $request)
+    public function index($order_id)
     {
-        $product = Product::find($request->input('_product_id'));
-        $address = Address::find($request->input('_address_id'));
+        $data = Order::where('id', $order_id)->select('total_money','id')->first()->toArray();
 
-        return view('user.payments.index', [
-            'product' => $product,
-            'numbers' => $request['_numbers'],
-            'address' => $address
-        ]);
+        return view('user.payments.index',compact('data'));
     }
 
     public function pay(Request $request)

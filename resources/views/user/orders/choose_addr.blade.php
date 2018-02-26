@@ -10,129 +10,65 @@
                     <div class="container">
                         <div class="cart-wrapper">
                             <div class="cart-price">
-
-                                <div class="user-address">
-                                    <!--标题 -->
-                                    <div class="am-cf am-padding">
-                                        <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong>
-                                            /
-                                            <small>Address&nbsp;list</small>
+                                <form class="mb-30" method="post" action="{{ url('/user/submit/address') }}">
+                                    {{csrf_field()}}
+                                    <div class="user-address">
+                                        <!--标题 -->
+                                        <div class="am-cf am-padding">
+                                            <div class="am-fl am-cf"><strong
+                                                        class="am-text-danger am-text-lg">地址管理</strong>
+                                                /
+                                                <small>Address&nbsp;list</small>
+                                            </div>
                                         </div>
+                                        <hr/>
+                                        <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
+                                            @foreach ($addresses as $item)
+                                                <li class="user-addresslist {{ $item['is_default'] ? 'defaultAddr' : '' }}">
+                                                    <label class="radio-inline" style="left: 205px">
+                                                        <input type="radio" value="{{$item['id']}}"
+                                                               name="address_id" {{ $item['is_default'] ? 'checked' : '' }} >
+                                                        <input type="hidden" name="id" value="{{$data['id']}}">
+                                                    </label>
+
+                                                    <p class="new-tit new-p-re">
+                                                        <span class="new-txt">{{ $item['name'] }}</span>
+                                                        <span class="new-txt-rd2">{{ $item['phone'] }}</span>
+                                                    </p>
+                                                    <div class="new-mu_l2a new-p-re">
+                                                        <p class="new-mu_l2cw">
+                                                            <span class="title">地址：</span>
+                                                            <span class="province">{{ $item['province'] }}</span>省
+                                                            <span class="city">{{  $item['city'] }}</span>市
+                                                            <span class="dist">{{  $item['area'] }}</span>
+                                                            <br>
+                                                            <span class="street">{{ $item['detail_address'] }}</span>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+
+
+                                        </ul>
+                                        <div class="clear"></div>
                                     </div>
-                                    <hr/>
-                                    <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
-
-                                        @foreach ($addresses as $item)
-                                            <li class="user-addresslist {{ $item['is_default'] ? 'defaultAddr' : '' }}">
-                        <span class="new-option-r default_addr" data-id="{{ $item['id'] }}">
-                            <i class="am-icon-check-circle"></i>默认地址
-                        </span>
-                                                <p class="new-tit new-p-re">
-                                                    <span class="new-txt">{{ $item['name'] }}</span>
-                                                    <span class="new-txt-rd2">{{ $item['phone'] }}</span>
-                                                </p>
-                                                <div class="new-mu_l2a new-p-re">
-                                                    <p class="new-mu_l2cw">
-                                                        <span class="title">地址：</span>
-                                                        <span class="province">{{ $item['province'] }}</span>省
-                                                        <span class="city">{{  $item['city'] }}</span>市
-                                                        <span class="dist">{{  $item['area'] }}</span>
-                                                        <br>
-                                                        <span class="street">{{ $item['detail_address'] }}</span></p>
-                                                </div>
-                                                <div class="new-addr-btn">
-                                                    <a href="{{ url("/user/addresses/{$item['id']}/edit") }}"><i
-                                                                class="am-icon-edit"></i>编辑</a>
-                                                    <span class="new-addr-bar">|</span>
-                                                    <a href="javascript:;" data-id="{{ $item['id'] }}"
-                                                       class="delete_address">
-                                                        <i class="am-icon-trash"></i>删除
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        @endforeach
-
-
-                                    </ul>
-                                    <div class="clear"></div>
-                                </div>
-
-                                <form class="mb-30" method="post" action="{{ url('/user/orders/') }}">
                                     {{ csrf_field() }}
                                     <div class="t-right">
                                         <!-- Checkout Area -->
                                         <section class="section checkout-area panel prl-30 pt-20 pb-40">
                                             <h2 class="h3 mb-20 h-title">支付</h2>
-                                            {{--@if (session()->has('status'))
-                                                <div class="alert alert-success alert-dismissible" role="alert">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    {{ session('status') }}
-                                                </div>
-                                            @endif--}}
-
-
-                                            {{-- <form class="mb-30" method="post" action="{{ url('/user/orders/') }}">
-                                                 {{ csrf_field() }}
-
-                                                 <div class="row">
-
-                                                     @if ($errors->has('address_id'))
-                                                         <div class="alert alert-danger" role="alert">
-                                                             <button type="button" class="close" data-dismiss="alert"
-                                                                     aria-label="Close"><span
-                                                                         aria-hidden="true">&times;</span></button>
-                                                             {{ $errors->first('address_id') }}
-                                                         </div>
-                                                     @endif
-                                                     <div class="col-md-4">
-                                                         <div class="form-group">
-                                                             <label>选择收货地址</label>
-                                                             <select class="form-control" name="address_id">
-                                                                 <option value="">请选择收货地址</option>
-                                                                 @if (Auth::check())
-                                                                     @foreach (Auth::user()->addresses as $address)
-                                                                         <option value="{{ $address->id }}">{{ $address->name }}
-                                                                             /{{ $address->phone }}</option>
-                                                                     @endforeach
-                                                                 @endif
-                                                             </select>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-
-                                                 @auth
-                                                     <button type="submit" class="btn btn-lg btn-rounded mr-10">下单</button>
-                                                 @endauth
-                                                 @guest
-                                                     <a href="{{ url('login') }}?redirect_url={{ url()->current() }}"
-                                                        class="btn btn-lg btn-rounded mr-10">下单</a>
-                                                 @endguest
-                                             </form>--}}
-
                                             <div class="row">
-                                                <div class="checkbox pull-left">
-                                                    <label>
-                                                        <input type="checkbox" value="">
-                                                        全选
-                                                    </label>
-                                                </div>
-                                                <span>已选择商品
-                                                    <span class="cars_count">0</span>
-                                                    件
-                                                </span>
                                                 <span>
                                                     合计
-                                                    <span class="cars_price">0</span>
+                                                    <span class="cars_price">{{$data['total_money']}}</span>
                                                     ￥
                                                 </span>
                                                 @auth
-                                                <button type="submit" class="btn btn-lg btn-rounded mr-10">下单</button>
+                                                <button type="submit" class="btn btn-lg btn-rounded mr-10">支付</button>
                                                 @endauth
                                                 @guest
                                                 <a href="{{ url('login') }}?redirect_url={{ url()->current() }}"
-                                                   class="btn btn-lg btn-rounded mr-10">下单</a>
+                                                   class="btn btn-lg btn-rounded mr-10">支付</a>
                                                 @endguest
                                             </div>
                                         </section>

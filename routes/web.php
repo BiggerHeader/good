@@ -63,9 +63,10 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
     Route::post('/orders/single', 'OrdersController@single');
     Route::resource('/orders', 'OrdersController', ['only' => ['index', 'store', 'show']]);
     //user choose address  if not else redirect
-    Route::get('/choose/address/{order_id}', 'OrdersController@setOrderAddress')->name('choose_address');
+    Route::get('/choose/address/{order_id}', 'OrdersController@getChooseAddress')->name('choose_address');
+    Route::post('/submit/address', 'OrdersController@setOrderAddress');
     // user payments
-    Route::post('/pay/show', 'PaymentsController@index');
+    Route::get('/pay/show/{order_id}', 'PaymentsController@index');
     Route::post('/pay/store', 'PaymentsController@pay');
 });
 // user payments !!! If [user.auth] is validated, infinite jumps will occur
