@@ -62,7 +62,7 @@
                         </td>
 
                         <td class="amount">
-                            <span class="amount-pay">{{ $order->total }}</span>
+                            <span class="amount-pay">{{ $order->total_money }}</span>
                         </td>
                     </tr>
                 @endforeach

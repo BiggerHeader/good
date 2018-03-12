@@ -41,7 +41,7 @@
                     <ul>
                         <li><a href="{{ url('/home/cars') }}"><i><img src="{{ asset('assets/user/images/send.png') }}"/></i><span>购物车<em class="m-num">{{ $user->cars->count() }}</em></span></a></li>
 
-                        <li><a href="{{ url('/home/orders') }}"><i><img src="{{ asset('assets/user/images/refund.png') }}"/></i><span>订单<em class="m-num">{{ $user->orders->count() }}</em></span></a></li>
+                        <li><a href="{{ url('/user/orders') }}"><i><img src="{{ asset('assets/user/images/refund.png') }}"/></i><span>订单<em class="m-num">{{ $user->orders->count() }}</em></span></a></li>
                     </ul>
                 </div>
 

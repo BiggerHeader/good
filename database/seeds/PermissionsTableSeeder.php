@@ -14,10 +14,10 @@ class PermissionsTableSeeder extends Seeder
     {
         $permissions = config('roles.permission');
 
-        foreach ($permissions as $value) {
-            foreach ($value as $v) {
-                Permission::create($v);
-            }
+            foreach ($permissions as $value) {
+                foreach ($value as $v) {
+                    Permission::create($v);
+                }
         }
     }
 }

@@ -11,6 +11,7 @@ use Auth;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 use Webpatser\Uuid\Uuid;
 
 class OrdersController extends Controller
@@ -20,12 +21,12 @@ class OrdersController extends Controller
      * */
     public function setOrderAddress(Request $request)
     {
-        $this->validate($request, ['address_id.required' => '请选地址','id.required'=>'订单ID为空']);
-        $update_res = Order::where('id', $request->input('id'))->update(['address_id'=>$request->input('address_id')]);
-        if($update_res){
+        $this->validate($request, ['address_id.required' => '请选地址', 'id.required' => '订单ID为空']);
+        $update_res = Order::where('id', $request->input('id'))->update(['address_id' => $request->input('address_id')]);
+        if ($update_res) {
             //跳转到支付页面
-            redirect('/pay/show');
-        }else{
+            return redirect()->route('pay_page', ['order_id' => $request->input('id')]);
+        } else {
             echo 'error';
         }
     }
@@ -37,7 +38,7 @@ class OrdersController extends Controller
     {
         if (!empty($order_id)) {
             $addresses = AddressRepository::getAddreses();
-            $data = Order::where('id', $order_id)->select('total_money','id')->first()->toArray();
+            $data = Order::where('id', $order_id)->select('total_money', 'id')->first()->toArray();
             //地址参数
             return view('user.orders.choose_addr', compact('addresses', 'data'));
         }
@@ -46,7 +47,6 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Auth::user()->orders;
-
         return view('user.orders.index', compact('orders'));
     }
 
@@ -56,25 +56,43 @@ class OrdersController extends Controller
         $this->validate($request, ['productid_number.required' => '请选择商品']);
 
         // cars to orders
-        $cars = $request->user()->cars()->with('product')->get();
+        $productid_number = $request->post('productid_number');
 
-        if ($cars->isEmpty()) {
-            return back()->withErrors(['address_id' => '购物车为空，请选择商品后再结账']);
-        }
-
-        $data = [];
-        $uuid = $this->formatOrderData($request, $cars);
-        $data['uuid'] = $uuid;
-        //计算总价
-        $data['total_money'] = $this->getTotal($cars);
-        $data['detail'] = serialize($request->post('productid_number'));
-        $data['user_id'] = $request->user()->id;
-        $res = Order::create($data);
-        //dd($data);
+        DB::beginTransaction();
+        $order_data = [];
+        //  需要修改 ？？？？？ 不能相信客户端数据
+        //获取所有 商品数据
+        $product_data = Product::whereIn('id', array_keys($productid_number))->get();
+        $order_data['total_money'] = $this->getTotal($product_data, $productid_number);
+        $order_data['user_id'] = $request->user()->id;
+        $order_data['uuid'] = $this->generateUuid();
+        $order_data['status'] = 0;
+        $order_data['created_at'] = date('Y-m-d H:i:s');
+        $order_data['updated_at'] = date('Y-m-d H:i:s');
+        //var_dump($order_data);exit();
+        $res = Order::create($order_data);
+        //创建订单
         if (!$res) {
-            //with  重新设置session
+            DB::rollBack();
             return back()->with('status', '服务器异常，请稍后再试');
         }
+        //组装  订单详情数据
+        $order_detail_data = [];
+        foreach ($productid_number as $key => $item) {
+            $order_detail_data[] = [
+                'order_id' => $res->id,
+                'product_id' => $key,
+                'numbers' => $item,
+            ];
+        }
+        //提交数据
+        if (!OrderDetail::insert($order_detail_data)) {
+            DB::rollBack();
+            return back()->with('status', '服务器异常，请稍后再试');
+        }
+        // delete cars data
+        $request->user()->cars()->delete();
+        DB::commit();
         return redirect()->route('choose_address', ['order_id' => $res->id]);
     }
 
@@ -136,23 +154,23 @@ class OrdersController extends Controller
         if ($order->user_id != Auth::user()->id) {
             abort(404, '你没有权限');
         }
-
+        // dd($order->address->name);
         return view('user.orders.show', compact('order'));
     }
 
-    private function formatOrderData($request, $cars)
+    private function generateUuid()
     {
         //$address_id = $request->input('address_id');
         //generate  order  id
         return Uuid::generate()->hex;
     }
 
-    private function getTotal($cars)
+    private function getTotal($product_data, $productid_number)
     {
         $total = 0;
 
-        foreach ($cars as $car) {
-            $total += $car['numbers'] * $car['product']['price'];
+        foreach ($product_data as $product_datum) {
+            $total += $productid_number[$product_datum->id] * $product_datum->price;
         }
 
         return $total;

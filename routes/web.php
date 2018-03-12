@@ -66,7 +66,7 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
     Route::get('/choose/address/{order_id}', 'OrdersController@getChooseAddress')->name('choose_address');
     Route::post('/submit/address', 'OrdersController@setOrderAddress');
     // user payments
-    Route::get('/pay/show/{order_id}', 'PaymentsController@index');
+    Route::get('/pay/show/{order_id}', 'PaymentsController@index')->name('pay_page')    ;
     Route::post('/pay/store', 'PaymentsController@pay');
 });
 // user payments !!! If [user.auth] is validated, infinite jumps will occur

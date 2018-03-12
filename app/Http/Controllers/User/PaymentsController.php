@@ -18,19 +18,17 @@ class PaymentsController extends ApiController
 {
     public function index($order_id)
     {
-        $data = Order::where('id', $order_id)->select('total_money','id')->first()->toArray();
-
+        $data = Order::where('id', $order_id)->select('total_money','id','uuid')->first()->toArray();
         return view('user.payments.index',compact('data'));
     }
 
     public function pay(Request $request)
     {
         if (($validator = $this->validatePayParam($request->all()))->fails()) {
+            dd($validator);
             return $this->setCode(303)->setMsg($validator->errors()->first());
         }
-
-        $pay_data = $this->getFormData($request->only(['price', 'istype', 'orderuid', 'goodsname']));
-
+        $pay_data = $this->getFormData($request->only(['price', 'istype', 'orderuid']));
         CreatePayment::dispatch($pay_data);
 
         return $this->setMsg('生成支付信息成功')->setData($pay_data)->toJson();
@@ -87,7 +85,7 @@ class PaymentsController extends ApiController
             'price' => 'required|numeric',
             'istype' => 'in:1,2',
             'orderuid' => 'required|exists:users,id',
-            'goodsname' => 'required|exists:products,name'
+            //'goodsname' => 'required|exists:products,name'
         ]);
     }
 

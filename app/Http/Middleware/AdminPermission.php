@@ -20,7 +20,6 @@ class AdminPermission
     {
         // 先获取当前路由名字
         $route = Route::currentRouteName();
-
         // 判断权限表中这条路由是否需要验证
         if ($permission = Permission::where('route', $route)->first()) {
             // 当前用户不拥有这个权限的名字
