@@ -66,7 +66,7 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
     Route::get('/choose/address/{order_id}', 'OrdersController@getChooseAddress')->name('choose_address');
     Route::post('/submit/address', 'OrdersController@setOrderAddress');
     // user payments
-    Route::get('/pay/show/{order_id}', 'PaymentsController@index')->name('pay_page')    ;
+    Route::get('/pay/show/{order_id}', 'PaymentsController@index')->name('pay_page');
     Route::post('/pay/store', 'PaymentsController@pay');
 });
 // user payments !!! If [user.auth] is validated, infinite jumps will occur
@@ -97,6 +97,12 @@ Route::middleware(['admin.auth', 'admin.permission'])->prefix('admin')->namespac
 
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/products', 'ProductsController');
+
+    /*后台显示  订单*/
+    Route::get('/orders/{status}', 'OrdersController@orders');
+    Route::post('/order/modify', 'OrdersController@modify');
+
+    Route::get('/test', 'OrdersController@test');
 
     Route::resource('/productImages', 'ProductImagesController', ['only' => ['index', 'destroy']]);
     Route::resource('/users', 'UsersController', ['only' => ['index']]);

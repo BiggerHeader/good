@@ -21,22 +21,49 @@
                 <div class="m-progress-list">
 								<span class="step-1 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">1<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">1
+                                       @if($order->status>=0)
+                                           <em class="bg"
+                                               style="background-image: url({{asset('assets/user/images/sprite.png')}});background-position: -103px -135px;width: 19px;height: 19px;"></em>
+                                       @else
+                                           <em class="bg"></em>
+                                       @endif
+                                   </i>
                                    <p class="stage-name">拍下商品</p>
                                 </span>
                     <span class="step-2 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">2<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">2
+                                       @if($order->status>=1)
+                                           <em class="bg"
+                                               style="background-image: url({{asset('assets/user/images/sprite.png')}});background-position: -103px -135px;width: 19px;height: 19px;"></em>
+                                       @else
+                                           <em class="bg"></em>
+                                       @endif
+                                   </i>
                                    <p class="stage-name">卖家发货</p>
                                 </span>
                     <span class="step-3 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">3<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">3 @if($order->status>=2)
+                                           <em class="bg"
+                                               style="background-image: url({{asset('assets/user/images/sprite.png')}});background-position: -103px -135px;width: 19px;height: 19px;"></em>
+                                       @else
+                                           <em class="bg"></em>
+                                       @endif
+                                   </i>
                                    <p class="stage-name">确认收货</p>
                                 </span>
                     <span class="step-4 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">4<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">4
+                                       @if($order->status>=3)
+                                           <em class="bg"
+                                               style="background-image: url({{asset('assets/user/images/sprite.png')}});background-position: -103px -135px;width: 19px;height: 19px;"></em>
+                                       @else
+                                           <em class="bg"></em>
+                                       @endif
+                                   </i>
                                    <p class="stage-name">交易完成</p>
                                 </span>
                     <span class="u-progress-placeholder"></span>
@@ -153,11 +180,9 @@
                                 </li>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

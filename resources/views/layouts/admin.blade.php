@@ -3,7 +3,7 @@
 <head>
     @include('common.admin.meta')
 
-    <title>@yield('title', 'MondayShop')</title>
+    <title>@yield('title', 'Shop')</title>
     @yield('style')
 </head>
 <body>
