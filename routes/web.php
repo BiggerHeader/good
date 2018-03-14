@@ -99,7 +99,7 @@ Route::middleware(['admin.auth', 'admin.permission'])->prefix('admin')->namespac
     Route::resource('/products', 'ProductsController');
 
     /*后台显示  订单*/
-    Route::get('/orders/{status}', 'OrdersController@orders');
+    Route::get('/orders/{status}/{orderid?}', 'OrdersController@orders');
     Route::post('/order/modify', 'OrdersController@modify');
 
     Route::get('/test', 'OrdersController@test');

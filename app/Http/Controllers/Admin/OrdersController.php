@@ -24,14 +24,22 @@ class OrdersController extends Controller
     /** 后台显示订单列表
      * @param $where
      */
-    public function orders($status)
+    public function orders($status = null, $orderid = null)
     {
-        if ($status < 0) {
-            $orders = Order::get();
-        } else {
-            $orders = Order::where('status', $status)->get();
+        $status = intval($status);
+        $where = [];
+        if (!empty($orderid)) {
+            $where['uuid'] = $orderid;
         }
-        return view('admin.orders.list', compact('orders'));
+        if (isset($status) && $status >= 0) {
+            $where['status'] = $status;
+        }
+        $orders = Order::where($where)->get();
+        if (isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest") {
+            echo json_encode($orders->toArray());
+        } else {
+            return view('admin.orders.list', compact('orders'));
+        }
     }
 
     /**

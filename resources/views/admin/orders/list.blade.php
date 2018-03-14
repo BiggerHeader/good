@@ -22,6 +22,28 @@
                 {{ session('status') }}
             </div>
         @endif
+        <div class="form-group skin-minimal">
+            <div class="mt-20 skin-minimal">
+                <div class="radio-box">
+                    <input type="radio" id="radio" name="demo-radio" checked value="-1">
+                    <label for="radio-2">全部</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="radio" name="demo-radio" value="0">
+                    <label for="radio-1">未发货</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="radio" name="demo-radio" value="1">
+                    <label for="radio-1">发货</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="radio" name="demo-radio" value="2">
+                    <label for="radio-1">已确认收货</label>
+                </div>
+            </div>
+            <input type="text" placeholder="输入订单ID" class="input-text radius size-L" id="orderid" name="orderid">
+            <input class="btn btn-primary size-L radius" type="button" name="tijao" id="tijao" value="查询">
+        </div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
@@ -74,6 +96,30 @@
 
 @section('script')
     <script type="text/javascript">
+        $(function(){
+            $('.skin-minimal input').iCheck({
+                checkboxClass: 'icheckbox-blue',
+                radioClass: 'iradio-blue',
+                increaseArea: '20%'
+            })});
+        $('#tijao').click(function () {
+            var radion_checked = $("input[name=demo-radio]:checked").val();
+            var orderid = $("#orderid").val();
+
+            $.ajax({
+                url: '/admin/orders/' + radion_checked + '/' + orderid + '/',
+                dataType: 'json',
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (res) {
+                    console.log(res);
+                }
+
+            })
+        })
+
         function change_order_status(obj, uuid) {
             var status_obj = $(obj).next();
             var status = $(obj).next().val();
