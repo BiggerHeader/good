@@ -11,6 +11,14 @@
     <link href="{{ asset('assets/user/AmazeUI-2.4.2/assets/css/amazeui.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset("assets/user/css/systyle.css") }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/user/css/personal.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/user/css/personal.css') }}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/admin/lib/jquery/1.9.1/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/statistics.js') }}"></script>
     @yield('style')
 </head>
 

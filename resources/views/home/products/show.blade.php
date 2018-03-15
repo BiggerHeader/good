@@ -3,17 +3,17 @@
 
 @section('main')
     <div class="listMain">
-        @inject('productPresenter', 'App\Presenters\ProductPresenter')
-        <!--放大镜-->
+    @inject('productPresenter', 'App\Presenters\ProductPresenter')
+    <!--放大镜-->
 
         <div class="item-inform">
             <div class="clearfixLeft" id="clearcontent">
 
                 <div class="box">
                     <script type="text/javascript">
-                        $(document).ready(function() {
+                        $(document).ready(function () {
                             $(".jqzoom").imagezoom();
-                            $("#thumblist li a").click(function() {
+                            $("#thumblist li a").click(function () {
                                 $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
                                 $("#jqzoom").attr('src', $(this).find("img").attr("src"));
                             });
@@ -21,7 +21,8 @@
                     </script>
 
                     <div class="tb-booth tb-pic tb-s310">
-                        <img src="{{ $productPresenter->getThumbLink($product->thumb) }}" alt="{{ $product->name }}" id="jqzoom" />
+                        <img src="{{ $productPresenter->getThumbLink($product->thumb) }}" alt="{{ $product->name }}"
+                             id="jqzoom"/>
                     </div>
                     <ul class="tb-thumb" id="thumblist">
                         @foreach ($product->productImages as $key => $image)
@@ -53,7 +54,7 @@
                     <div class="tb-detail-price">
                         <li class="price iteminfo_price">
                             <dt>促销价</dt>
-                            <dd><em>¥</em><b class="sys_item_price">{{ $product->price }}</b>  </dd>
+                            <dd><em>¥</em><b class="sys_item_price">{{ $product->price }}</b></dd>
                         </li>
                         <li class="price iteminfo_mktprice">
                             <dt>原价</dt>
@@ -63,40 +64,44 @@
                     </div>
 
                     <!--地址-->
-                   {{-- <dl class="iteminfo_parameter freight">
-                        <dt>收货地址</dt>
-                        <div class="iteminfo_freprice">
-                            <div class="am-form-content address">
+                    {{-- <dl class="iteminfo_parameter freight">
+                         <dt>收货地址</dt>
+                         <div class="iteminfo_freprice">
+                             <div class="am-form-content address">
 
-                                @if (Auth::check())
-                                    <select data-am-selected name="address_id">
-                                        @foreach (Auth::user()->addresses as $address)
-                                            <option value="{{ $address->id }}">{{ $address->name }}/{{ $address->phone }}</option>
-                                        @endforeach
-                                    </select>
-                                @else
-                                    <a style="line-height:27px;color:red;" href="{{ url('user')  }}">添加收货地址</a>
-                                @endif
+                                 @if (Auth::check())
+                                     <select data-am-selected name="address_id">
+                                         @foreach (Auth::user()->addresses as $address)
+                                             <option value="{{ $address->id }}">{{ $address->name }}/{{ $address->phone }}</option>
+                                         @endforeach
+                                     </select>
+                                 @else
+                                     <a style="line-height:27px;color:red;" href="{{ url('user')  }}">添加收货地址</a>
+                                 @endif
 
-                            </div>
-                        </div>
-                    </dl>--}}
+                             </div>
+                         </div>
+                     </dl>--}}
                     <div class="clear"></div>
 
                     <!--销量-->
                     <ul class="tm-ind-panel">
                         <li class="tm-ind-item tm-ind-sumCount canClick">
-                            <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{ $product->safe_count }}</span></div>
+                            <div class="tm-indcon"><span class="tm-label">累计销量</span><span
+                                        class="tm-count">{{ $product->safe_count }}</span></div>
                         </li>
                         <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
+                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span>
+                            </div>
                         </li>
                     </ul>
                     <div class="clear"></div>
 
                     <!--各种规格-->
                     <dl class="iteminfo_parameter sys_item_specpara">
-                        <dt class="theme-login"><div class="cart-title">可选规格<span class="am-icon-angle-right"></span></div></dt>
+                        <dt class="theme-login">
+                        <div class="cart-title">可选规格<span class="am-icon-angle-right"></span></div>
+                        </dt>
                         <dd>
                             <!--操作页面-->
 
@@ -116,7 +121,9 @@
                                                     <div class="cart-title">{{ $item }}</div>
                                                     <ul>
                                                         @foreach ($attrs as $key => $attr)
-                                                            <li title="价格浮动 {{ $attr['markup'] }}" class="sku-line {{ $key == 0 ? 'selected' : '' }}">{{ $attr['items'] }}<i></i></li>
+                                                            <li title="价格浮动 {{ $attr['markup'] }}"
+                                                                class="sku-line {{ $key == 0 ? 'selected' : '' }}">{{ $attr['items'] }}
+                                                                <i></i></li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
@@ -124,10 +131,11 @@
                                             <div class="theme-options">
                                                 <div class="cart-title number">数量</div>
                         <dd>
-                            <input id="min" class="am-btn am-btn-default" type="button" value="-" />
-                            <input id="text_box" name="numbers" type="text" value="1" style="width:30px;" />
-                            <input id="add" class="am-btn am-btn-default"  type="button" value="+" />
-                            <span id="Stock" class="tb-hidden">库存<span class="stock">{{ $product->productDetail->count }}</span>件</span>
+                            <input id="min" class="am-btn am-btn-default" type="button" value="-"/>
+                            <input id="text_box" name="numbers" type="text" value="1" style="width:30px;"/>
+                            <input id="add" class="am-btn am-btn-default" type="button" value="+"/>
+                            <span id="Stock" class="tb-hidden">库存<span
+                                        class="stock">{{ $product->productDetail->count }}</span>件</span>
                         </dd>
 
 
@@ -154,23 +162,24 @@
             <a href="{{ url('/') }}"><span class="am-icon-home am-icon-fw">首页</span></a>
             @auth
             @if ($product->users()->where('user_id', \Auth::user()->id)->count() > 0)
-                <a href="javascript:;" style="display: none" id="likes_btn"><span class="am-icon-heart am-icon-fw" >收藏</span></a>
-                <a href="javascript:;"  id="de_likes_btn"><span class="am-icon-heart am-icon-fw">取消收藏</span></a>
+                <a href="javascript:;" style="display: none" id="likes_btn"><span
+                            class="am-icon-heart am-icon-fw">收藏</span></a>
+                <a href="javascript:;" id="de_likes_btn"><span class="am-icon-heart am-icon-fw">取消收藏</span></a>
             @else
-                <a href="javascript:;"  id="likes_btn"><span class="am-icon-heart am-icon-fw">收藏</span></a>
-                <a href="javascript:;" style="display: none" id="de_likes_btn"><span class="am-icon-heart am-icon-fw" >取消收藏</span></a>
+                <a href="javascript:;" id="likes_btn"><span class="am-icon-heart am-icon-fw">收藏</span></a>
+                <a href="javascript:;" style="display: none" id="de_likes_btn"><span class="am-icon-heart am-icon-fw">取消收藏</span></a>
             @endif
             @endauth
 
             @guest
-            <a href="javascript:;"  id="likes_btn"><span class="am-icon-heart am-icon-fw">收藏</span></a>
+            <a href="javascript:;" id="likes_btn"><span class="am-icon-heart am-icon-fw">收藏</span></a>
             @endguest
 
         </div>
         <li>
             <div class="clearfix tb-btn" id="nowBug">
                 @auth
-                <a  href="javascript:;" >立即购买</a>
+                <a href="javascript:;">立即购买</a>
                 @endauth
                 @guest
                 <a href="{{ url('login') }}?redirect_url={{ url()->current() }}">立即购买</a>
@@ -180,7 +189,7 @@
         </li>
         <li>
             <div class="clearfix tb-btn tb-btn-basket">
-                <a  title="加入购物车" href="javascript:;"  id="addCar"><i></i>加入购物车</a>
+                <a title="加入购物车" href="javascript:;" id="addCar"><i></i>加入购物车</a>
             </div>
         </li>
     </div>
@@ -209,7 +218,9 @@
                         <li class="first">
                             <div class="p-img">
                                 <a href="{{ url("/home/products/{$recommendProduct->id}") }}">
-                                    <img class="media-object" src="{{ $productPresenter->getThumbLink($recommendProduct->thumb) }}" alt="{{ $recommendProduct->name }}" width="80">
+                                    <img class="media-object"
+                                         src="{{ $productPresenter->getThumbLink($recommendProduct->thumb) }}"
+                                         alt="{{ $recommendProduct->name }}" width="80">
                                 </a>
                             </div>
                             <div class="p-name"><a href="{{ url("/home/products/{$recommendProduct->id}") }}">
@@ -230,9 +241,7 @@
                 <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
                     <li class="am-active">
                         <a href="#">
-
                             <span class="index-needs-dt-txt">宝贝详情</span></a>
-
                     </li>
 
                     <li>
@@ -259,30 +268,19 @@
                     </div>
 
                     <div class="am-tab-panel am-fade">
-
-                        <div class="actor-new">
-                            <div class="rate">
-                                <strong>100<span>%</span></strong><br> <span>好评度</span>
+                        @if(!empty($is_buy))
+                            <div class="actor-new">
+                                <p style="left: 0px;float: left;">
+                                    <textarea rows="2" cols="50" id="comment_content"></textarea>
+                                    <button type="button" class="btn">提交</button>
+                                </p>
                             </div>
-                            <dl>
-                                <dt>买家印象</dt>
-                                <dd class="p-bfc">
-                                    <q class="comm-tags"><span>味道不错</span><em>(2177)</em></q>
-                                    <q class="comm-tags"><span>颗粒饱满</span><em>(1860)</em></q>
-                                    <q class="comm-tags"><span>口感好</span><em>(1823)</em></q>
-                                    <q class="comm-tags"><span>商品不错</span><em>(1689)</em></q>
-                                    <q class="comm-tags"><span>香脆可口</span><em>(1488)</em></q>
-                                    <q class="comm-tags"><span>个个开口</span><em>(1392)</em></q>
-                                    <q class="comm-tags"><span>价格便宜</span><em>(1119)</em></q>
-                                    <q class="comm-tags"><span>特价买的</span><em>(865)</em></q>
-                                    <q class="comm-tags"><span>皮很薄</span><em>(831)</em></q>
-                                </dd>
-                            </dl>
-                        </div>
+                        @endif
                         <div class="clear"></div>
                         <div class="tb-r-filter-bar">
                             <ul class=" tb-taglist am-avg-sm-4">
-                                <li class="tb-taglist-li tb-taglist-li-current">
+                                评论列表
+                               {{-- <li class="tb-taglist-li tb-taglist-li-current">
                                     <div class="comment-info">
                                         <span>全部评价</span>
                                         <span class="tb-tbcr-num">(32)</span>
@@ -308,7 +306,7 @@
                                         <span>差评</span>
                                         <span class="tb-tbcr-num">(32)</span>
                                     </div>
-                                </li>
+                                </li>--}}
                             </ul>
                         </div>
                         <div class="clear"></div>
@@ -317,7 +315,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -351,7 +349,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -385,7 +383,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -419,7 +417,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -453,7 +451,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -487,7 +485,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -521,7 +519,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -555,7 +553,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -588,7 +586,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -622,7 +620,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -656,7 +654,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -690,7 +688,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
-                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="../images/hwbn40x40.jpg"/>
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -738,7 +736,8 @@
                         <div class="clear"></div>
 
                         <div class="tb-reviewsft">
-                            <div class="tb-rate-alert type-attention">购买前请查看该商品的 <a href="#" target="_blank">购物保障</a>，明确您的售后保障权益。</div>
+                            <div class="tb-rate-alert type-attention">购买前请查看该商品的 <a href="#" target="_blank">购物保障</a>，明确您的售后保障权益。
+                            </div>
                         </div>
 
                     </div>
@@ -752,7 +751,7 @@
             <div class="footer">
                 <div class="footer-hd">
                     <p>
-                        <a href="#">星期一商城</a>
+                        <a href="#">商城</a>
                         <b>|</b>
                         <a href="#">商城首页</a>
                         <b>|</b>
@@ -781,10 +780,10 @@
         var token = "{{ csrf_token() }}";
         var likes_nums = $('#likes_count');
 
-        $('#likes_btn').click(function(){
+        $('#likes_btn').click(function () {
             var that = $(this);
 
-            $.post(_url, {_token:token}, function(res){
+            $.post(_url, {_token: token}, function (res) {
                 layer.msg(res.msg);
 
                 if (res.code == 301) {
@@ -795,10 +794,10 @@
                 likes_nums.text(parseInt(likes_nums.text()) + 1);
             });
         });
-        $('#de_likes_btn').click(function(){
+        $('#de_likes_btn').click(function () {
             var that = $(this);
 
-            $.post(_url, {_token:token,_method:'DELETE'}, function(res){
+            $.post(_url, {_token: token, _method: 'DELETE'}, function (res) {
                 layer.msg(res.msg);
 
                 if (res.code == 301) {
@@ -811,11 +810,11 @@
         });
 
         var Car = {
-            addProduct:function(product_id) {
+            addProduct: function (product_id) {
 
                 var numbers = $("input[name=numbers]").val();
-                if (! localStorage.getItem(product_id)) {
-                    var product = {name:"{{ $product->name }}", numbers:numbers, price:"{{ $product->price }}"};
+                if (!localStorage.getItem(product_id)) {
+                    var product = {name: "{{ $product->name }}", numbers: numbers, price: "{{ $product->price }}"};
                 } else {
                     var product = $.parseJSON(localStorage.getItem(product_id));
                     product.numbers = parseInt(product.numbers) + parseInt(numbers);
@@ -826,15 +825,15 @@
 
         var car_nums = $('#cart-number');
         $('#addCar').shoping({
-            endElement:"#car_icon",
+            endElement: "#car_icon",
             iconCSS: "",
             iconImg: $('#jqzoom').attr('src'),
-            endFunction:function(element){
+            endFunction: function (element) {
 
                 var numbers = $("input[name=numbers]").val();
-                var data = {product_id:"{{ $product->id }}",_token:token, numbers:numbers};
+                var data = {product_id: "{{ $product->id }}", _token: token, numbers: numbers};
                 var url = "{{ url('/home/cars') }}";
-                $.post(url, data, function(res){
+                $.post(url, data, function (res) {
                     console.log(res);
 
                     if (res.code == 304) {
@@ -847,28 +846,33 @@
                         Car.addProduct(product_id);
                     }
                     layer.msg('加入购物车成功');
-                    car_nums.text(parseInt(car_nums.text())+1);
+                    car_nums.text(parseInt(car_nums.text()) + 1);
                 });
             }
         });
 
-        $('#nowBug').click(function(){
+        $('#nowBug').click(function () {
             var _address_id = $('select[name=address_id]').val();
             var _numbers = $('input[name=numbers]').val();
             var _product_id = $('input[name=product_id]').val();
 
 
-            var data = {address_id:_address_id,numbers:_numbers,product_id:_product_id, _token:"{{ csrf_token() }}"};
+            var data = {
+                address_id: _address_id,
+                numbers: _numbers,
+                product_id: _product_id,
+                _token: "{{ csrf_token() }}"
+            };
             console.log(data);
-            $.post('{{ url('user/orders/single') }}', data, function(res){
+            $.post('{{ url('user/orders/single') }}', data, function (res) {
                 layer.msg(res.msg);
             });
 
             /** v请求支付 **/
             var form = $('#pay_form');
-            var input = '<input type="hidden" name="_address_id" value="'+ _address_id +'">\
-                        <input type="hidden" name="_product_id" value="'+ _product_id +'">\
-                        <input type="hidden" name="_numbers" value="'+ _numbers +'">';
+            var input = '<input type="hidden" name="_address_id" value="' + _address_id + '">\
+                        <input type="hidden" name="_product_id" value="' + _product_id + '">\
+                        <input type="hidden" name="_numbers" value="' + _numbers + '">';
             form.append(input);
             form.submit();
         });

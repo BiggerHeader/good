@@ -95,6 +95,87 @@
 @endsection
 
 @section('script')
+    <script>
+        (function () {
+            var oLanguage = {
+                "oAria": {
+                    "sSortAscending": ": 升序排列",
+                    "sSortDescending": ": 降序排列"
+                },
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sLast": "末页",
+                    "sNext": "下页",
+                    "sPrevious": "上页"
+                },
+                "sEmptyTable": "没有相关记录",
+                "sInfo": "第 _START_ 到 _END_ 条记录，共 _TOTAL_ 条",
+                "sInfoEmpty": "第 0 到 0 条记录，共 0 条",
+                "sInfoFiltered": "(从 _MAX_ 条记录中检索)",
+                "sInfoPostFix": "",
+                "sDecimal": "",
+                "sThousands": ",",
+                "sLengthMenu": "每页显示条数: _MENU_",
+                "sLoadingRecords": "正在载入...",
+                "sProcessing": "正在载入...",
+                "sSearch": "搜索： ",
+                "sSearchPlaceholder": "",
+                "sUrl": "",
+                "sZeroRecords": "没有相关记录"
+            }
+            $.fn.dataTable.defaults.oLanguage = oLanguage;
+            //$.extend($.fn.dataTable.defaults.oLanguage,oLanguage)
+        })();
+
+        $(document).ready(function () {
+            $("#search").click(function () {
+                $("#ajax-mask").show();
+                $(".os_type").removeClass('active');
+                $("#DAU").addClass('active');
+                $.ajax({
+                    type: "post",
+                    url: '/admin/Order_show/show_page',
+                    data: {
+                        appid: $("#appid").val(),
+                        channelid: $("#channelid").val(),
+                        dt_str: $("#social_time").val()
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#DAU").click();
+                        $("#ajax-mask").hide();
+                        if ($("#sample-table-1").html()) {
+                            $('#sample-table-1').dataTable().fnClearTable();
+                            $('#sample-table-1').dataTable().fnDestroy();
+                        }
+                        $('#sample-table-1').DataTable({
+                            //"order": [[0, "desc"]],
+                            "iDisplayLength": 15,//每页长度15
+                            "bLengthChange": false,//是否需要选择每页显示长度
+                            "searching": true,//是否需要搜索框
+                            data: data.dataSet,
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv'
+                            ]
+                            //columns: data.title
+                        });
+                    }
+                })
+            });
+            function stopPropagation(e) {
+                e = e || window.event;
+                if (e.stopPropagation) { //W3C阻止冒泡方法
+                    e.stopPropagation();
+                } else {
+                    e.cancelBubble = true; //IE阻止冒泡方法
+                }
+            }
+
+            $("#search").click();
+        })
+    </script>
+
     <script type="text/javascript">
         $(function(){
             $('.skin-minimal input').iCheck({

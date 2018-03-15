@@ -109,80 +109,45 @@
                     </div>
                 </div>
             </div>
-            <div class="order-infomain">
-                <div class="order-top">
-                    <div class="th th-item">
-                        <td class="td-inner">商品</td>
-                    </div>
-                    <div class="th th-price">
-                        <td class="td-inner">单价</td>
-                    </div>
-                    <div class="th th-number">
-                        <td class="td-inner">数量</td>
-                    </div>
-                    <div class="th th-operation">
-                        <td class="td-inner">商品操作</td>
-                    </div>
-                    <div class="th th-amount">
-                        <td class="td-inner">合计</td>
-                    </div>
-                </div>
 
-                <div class="order-main">
-
-                    <div class="order-status3">
-                        <div class="order-content">
-                            <div class="order-left">
-
-                                @inject('productPresenter', 'App\Presenters\ProductPresenter')
-                                @foreach ($order->orderDetails as $orderDetail)
-                                    <ul class="item-list">
-                                        <li class="td td-item">
-                                            <div class="item-pic">
-                                                <a href="{{ url("/home/products/{$orderDetail->product->id}") }}"
-                                                   class="J_MakePoint">
-                                                    <img src="{{ $productPresenter->getThumbLink($orderDetail->product->thumb) }}"
-                                                         class="itempic J_ItemImg">
-                                                </a>
-                                            </div>
-                                            <div class="item-info">
-                                                <div class="item-basic-info">
-                                                    <a href="{{ url("/home/products/{$orderDetail->product->id}") }}">
-                                                        <p>{!! $orderDetail->product->title !!}</p>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="td td-price">
-                                            <div class="item-price">
-                                                {{ $orderDetail->product->price }}
-                                            </div>
-                                        </li>
-                                        <li class="td td-number">
-                                            <div class="item-number">
-                                                <span>×</span>{{ $orderDetail->numbers }}
-                                            </div>
-                                        </li>
-                                        <li class="td td-operation">
-                                            <div class="item-operation">
-                                                退款/退货
-                                            </div>
-                                        </li>
-                                    </ul>
-                                @endforeach
-
-                            </div>
-                            <div class="order-right">
-                                <li class="td td-amount">
-                                    <div class="item-amount">
-                                        合计：{{ $order->total_money }}
-                                    </div>
-                                </li>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table id="sample-table-1" class="table table-bordered table-hover"
+                   aria-describedby="sample-table-1_info">
+                <thead>
+                <tr style="background-color: #DEDEDE">商品</tr>
+                <tr style="background-color: #DEDEDE">单价</tr>
+                <tr style="background-color: #DEDEDE">数量</tr>
+                <tr style="background-color: #DEDEDE">操作</tr>
+                </thead>
+                <tbody>
+                @inject('productPresenter', 'App\Presenters\ProductPresenter')
+                @foreach ($order->orderDetails as $orderDetail)
+                    <tr>
+                        <td>
+                            <a href="{{ url("/home/products/{$orderDetail->product->id}") }}"
+                               class="J_MakePoint">
+                                <img src="{{ $productPresenter->getThumbLink($orderDetail->product->thumb) }}"
+                                     style="width: 20px;height: 20px;">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ url("/home/products/{$orderDetail->product->id}") }}">
+                                {!! $orderDetail->product->title !!}
+                            </a>
+                        </td>
+                        <td>
+                            {{ $orderDetail->product->price }}
+                        </td>
+                        <td>
+                            <span>×</span>{{ $orderDetail->numbers }}
+                        </td>
+                        <td>
+                            <a href="{{ url("/home/products/{$orderDetail->product->id}") }}">
+                                评论</a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

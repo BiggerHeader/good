@@ -78,11 +78,13 @@ class OrdersController extends Controller
         }
         //组装  订单详情数据
         $order_detail_data = [];
+        $user_id = Auth::guard()->user();
         foreach ($productid_number as $key => $item) {
             $order_detail_data[] = [
                 'order_id' => $res->id,
                 'product_id' => $key,
                 'numbers' => $item,
+                'user_id' =>$user_id ,
             ];
             Product::where('id', $key)->increment(['safe_count' => $item]);
         }

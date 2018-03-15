@@ -20,12 +20,12 @@
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <!-- PAGE TITLE                                -->
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
-    <title>@yield('title', '星期一 | 一个星期美好的开始')</title>
+    <title>@yield('title', '美好购物的开始')</title>
 
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <!-- SEO METAS                                 -->
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="description" content="星期一网上商城,专业的综合网上购物商城,销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品等品牌优质商品.便捷、诚信的服务，为您提供愉悦的网上购物体验!">
+    <meta name="description" content="网上商城,专业的综合网上购物商城,销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品等品牌优质商品.便捷、诚信的服务，为您提供愉悦的网上购物体验!">
     <meta name="black friday, coupon, coupon codes, coupon theme, coupons, deal news, deals, discounts, ecommerce, friday deals, groupon, promo codes, responsive, shop, store coupons">
     <meta name="Keywords" content="网上购物,网上商城,网上买,购物网站,团购,安全购物,电子商务,打折" />
 
@@ -64,11 +64,14 @@
     <link href="{{ asset('assets/shop/css/base.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/shop/css/style.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.css') }}" />
+
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <!-- Initialize jQuery library                 -->
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <script src="{{ asset('assets/shop/js/jquery-1.12.3.min.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/statistics.js') }}"></script>
     @yield('style')
 </head>
 
