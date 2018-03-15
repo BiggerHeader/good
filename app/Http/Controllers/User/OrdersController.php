@@ -84,12 +84,14 @@ class OrdersController extends Controller
                 'product_id' => $key,
                 'numbers' => $item,
             ];
+            Product::where('id', $key)->increment(['safe_count' => $item]);
         }
         //提交数据
         if (!OrderDetail::insert($order_detail_data)) {
             DB::rollBack();
             return back()->with('status', '服务器异常，请稍后再试');
         }
+
         // delete cars data
         $request->user()->cars()->delete();
         DB::commit();

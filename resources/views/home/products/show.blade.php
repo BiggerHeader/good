@@ -63,7 +63,7 @@
                     </div>
 
                     <!--地址-->
-                    <dl class="iteminfo_parameter freight">
+                   {{-- <dl class="iteminfo_parameter freight">
                         <dt>收货地址</dt>
                         <div class="iteminfo_freprice">
                             <div class="am-form-content address">
@@ -80,7 +80,7 @@
 
                             </div>
                         </div>
-                    </dl>
+                    </dl>--}}
                     <div class="clear"></div>
 
                     <!--销量-->

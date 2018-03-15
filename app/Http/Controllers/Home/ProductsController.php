@@ -11,13 +11,13 @@ class ProductsController extends Controller
 {
 
     public function index(Request $request)
-    {
-        $products = Product::inRandomOrder()->take(9)->get(['id', 'name'])->split(3);
+{
+    $products = Product::inRandomOrder()->take(9)->get(['id', 'name'])->split(3);
 
-        $productPinyins = Product::groupBy('first_pinyin')->get(['first_pinyin']);
+    $productPinyins = Product::groupBy('first_pinyin')->get(['first_pinyin']);
 
-        return view('home.products.index', compact('products', 'productPinyins'));
-    }
+    return view('home.products.index', compact('products', 'productPinyins'));
+}
 
 
     /**
