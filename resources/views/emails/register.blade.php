@@ -126,7 +126,7 @@
 <div class="qmbox qm_con_body_content qqmail_webmail_only" id="mailContentContainer" style="">
 
     <div class="contaner">
-        <div class="title">星期一商城账户激活邮件</div>
+        <div class="title">商城账户激活邮件</div>
         <div class="content">
             <p class="biaoti"><b>欢迎你注册本网站的账户！</b></p>
             <b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>

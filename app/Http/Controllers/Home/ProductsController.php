@@ -43,6 +43,11 @@ class ProductsController extends Controller
     }
 
 
+    /**
+     * 单页显示
+     * @param Product $product
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Product $product)
     {
         $user = Auth::guard()->user();

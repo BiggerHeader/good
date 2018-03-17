@@ -22,12 +22,12 @@
         <!-- ––––––––––––––––––––––––––––––––––––––––– -->
         <!-- PAGE TITLE                                -->
         <!-- ––––––––––––––––––––––––––––––––––––––––– -->
-        <title>@yield('title', '星期一 | 一个星期美好的开始')</title>
+        <title>@yield('title', '大头 | 美好购物的开始')</title>
 
         <!-- ––––––––––––––––––––––––––––––––––––––––– -->
         <!-- SEO METAS                                 -->
         <!-- ––––––––––––––––––––––––––––––––––––––––– -->
-        <meta name="description" content="星期一网上商城,专业的综合网上购物商城,销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品等品牌优质商品.便捷、诚信的服务，为您提供愉悦的网上购物体验!">
+        <meta name="description" content="网上商城,专业的综合网上购物商城,销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品等品牌优质商品.便捷、诚信的服务，为您提供愉悦的网上购物体验!">
         <meta name="black friday, coupon, coupon codes, coupon theme, coupons, deal news, deals, discounts, ecommerce, friday deals, groupon, promo codes, responsive, shop, store coupons">
         <meta name="Keywords" content="网上购物,网上商城,网上买,购物网站,团购,安全购物,电子商务,打折" />
 

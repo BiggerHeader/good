@@ -71,7 +71,7 @@
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <script src="{{ asset('assets/shop/js/jquery-1.12.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/statistics.js') }}"></script>
+   {{-- <script type="text/javascript" src="{{ asset('js/statistics.js') }}"></script>--}}
     @yield('style')
 </head>
 
