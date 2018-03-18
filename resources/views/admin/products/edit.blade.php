@@ -192,7 +192,7 @@
                                                 <td>未知</td>
                                                 <td><span style="color: #5FB878;">上传成功</span></td>
                                                 <td>
-                                                    <img src="/storage/{{ $value->link }}" />
+                                                    <img src="{{ $value->link }}" />
                                                     <button type="button" data-id="{{ $value->id }}" class="layui-btn layui-btn-mini layui-btn-danger  link_delte_btn">删除</button>
                                                 </td>
                                             </tr>
@@ -312,7 +312,7 @@
             var hidden_text = $('input[data-id='+ _id +']');
             var that = $(this);
 
-            $.post('{{ url('/admin/products/delete/images/') }}', {id:_id}, function(res){
+            $.post('{{ url('/admin/products/delete/images') }}', {id:_id,_token:'{{csrf_token()}}'}, function(res){
                 if (res.code == 200) {
                     hidden_text.remove();
                     that.parent().parent().remove();

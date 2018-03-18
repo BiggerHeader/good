@@ -92,11 +92,12 @@ Route::middleware(['admin.auth', 'admin.permission'])->prefix('admin')->namespac
     // product image and product list image upload
     Route::post('/products/upload/images', 'ProductsController@upload');
     Route::post('/products/upload/detail', 'ProductsController@uploadDetailImage');
-    Route::any('/products/delete/images', 'ProductsController@deleteImage');
+    Route::post('/products/delete/images', 'ProductsController@deleteImage');
 
 
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/products', 'ProductsController');
+    Route::resource('/comments', 'CommentsController');
 
     /*后台显示  订单*/
     Route::get('/orders/{status}/{orderid?}', 'OrdersController@orders');

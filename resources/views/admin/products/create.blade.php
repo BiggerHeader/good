@@ -22,7 +22,6 @@
 
     <form action="{{ url('admin/products') }}" method="post" class="form form-horizontal" id="form-article-add">
         {{ csrf_field() }}
-
         <div class="row cl {{ $errors->has('name') ? 'has-error' : '' }}">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
             <div class="formControls col-xs-8 col-sm-9">

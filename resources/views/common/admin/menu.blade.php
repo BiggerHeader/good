@@ -26,7 +26,8 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="{{ url('/admin/orders/-1') }}" data-title="商品列表" href="javascript:void(0)">订单列表</a>
+                    <li><a data-href="{{ url('/admin/orders/-1') }}" data-title="商品列表"
+                           href="javascript:void(0)">订单列表</a>
                     </li>
                 </ul>
             </dd>
@@ -65,7 +66,7 @@
             <dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="" data-title="评论列表" href="javascript:;">评论列表</a>
+                    <li><a data-href="{{ url('/admin/comments') }}" data-title="评论列表" href="javascript:;">评论列表</a>
                     </li>
                     <li><a data-href="feedback-list.html" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
                 </ul>

@@ -54,7 +54,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-
+        //Event::fire() 触发事件
         event(new Registered($user = $this->create($request->all())));
 
         return $this->registered($request, $user)
@@ -80,6 +80,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:50|unique:users',
             'password' => 'required|string|min:5|confirmed',
             'captcha' => 'required|captcha',
+            'schoole' => 'required|string',
         ], [
             'name.required' => '用户名不能为空',
             'name.max' => '用户名不能超过50个字符',
@@ -92,6 +93,7 @@ class RegisterController extends Controller
             'password.confirmed' => '两次密码不一致',
             'captcha.required' => '验证码不能为空',
             'captcha.captcha' => '验证码不正确',
+            'schoole.required' => '学校不能为空',
         ]);
     }
 
@@ -100,7 +102,7 @@ class RegisterController extends Controller
         $faker = Factory::create();
 
         // email_active,
-        return  User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'sex' => $data['sex'],

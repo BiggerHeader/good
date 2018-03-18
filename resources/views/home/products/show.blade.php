@@ -411,22 +411,23 @@
         function getPageContent() {
             // ajax 获取评论列表
             $.ajax({
-                url: `http://yaf.com/comment/comment/get/product_id/${product_id}/page/${page}/pageSize/${pageSize}`,
+                url: 'http://yaf.com/comment/comment/get/product_id',
                 type: 'get',
+                data: {product_id: product_id, page: page, pageSize: pageSize},
                 dataType: "json",
                 success: function (respones) {
                     if (respones.code == 10000) {
                         console.log(respones);
                         var str = '';
                         var paginationHtml = `<li class="am-disabled"><a href="javascript:;">&laquo;</a></li>`
-                        pageTotal = Math.ceil(respones.data.count / pageSize);
+                        pageTotal = Math.ceil(respones.count / pageSize);
                         for (let i = 0; i < pageTotal; i++) {
                             paginationHtml += `<li><a href="javascript:;">${ i + 1 }</a></li>`;
                         }
                         paginationHtml += `<li><a href="javascript:;">&raquo;</a></li>`;
                         $('.am-pagination').html(paginationHtml);
-                        for (let i = 0; i < respones.data.list.length; i++) {
-                            var item = respones.data.list[i]
+                        for (let i = 0; i < respones.list.length; i++) {
+                            var item = respones.list[i]
                             str += `
                                 <li class="am-comment">
                                 <a href="">
