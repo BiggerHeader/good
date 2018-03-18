@@ -1,0 +1,588 @@
+body{
+    background: #fff;
+    color: #000;
+}
+body,div,p,label,pre,.popover-title,.btn.f16,.f16{
+    font-size: 16px;
+    font-family:"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif!important;
+}
+h1{
+    font: normal 20px "microsoft yahei";
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width: auto;
+    text-align: left;
+    padding: 0 3%;
+    min-width: 900px;
+}
+.min-container{
+    min-height: 80%;
+}
+.main-head{
+    margin:50px 0 16px 0;
+    position: relative;
+}
+.main-head h1,.kaifu-head h1{
+    font: 400 22px "microsoft yahei";
+}
+.main-head h1 small,.kaifu-head h1 small{
+    color:#000;
+}
+.main-body{
+    border: solid 1px #dad9d9;
+    border-top: 0;
+}
+.body-head{
+    border: solid 1px #dad9d9;
+    border-width: 1px 0;
+    background:#f2f2f2;
+    padding: 24px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    height: 74px;
+}
+.fl,.example>*{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.no-padding{
+    padding: 0;
+}
+.clearfix,body:after,.zizhu-row:after.graph-row:after,.favor-con:after,.social-search-box:after,.pamas-wrap:after,.drag-wrap:after,.drag-wrap>div:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+/*表单*/
+.basic-input[type="text"],.info-select{
+    height: 40px;
+    margin: 0;
+    width: 363px;
+    font-size: 16px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    border-radius: 0;
+}
+input[disabled]{
+    color: #555;
+}
+input[disabled]:hover{
+    background-color: #eee;
+    border-color: #ddd;
+    color: #555;
+}
+input[type="text"]::-webkit-input-placeholder {
+    font-size: 13px;
+}
+input[type="text"]::-moz-placeholder {
+    font-size: 13px;
+}
+input[type="text"]::-o-placeholder {
+    font-size: 13px;
+}
+input[type="text"]:-ms-input-placeholder {
+    font-size: 13px;
+    color: rgba(0,0,0,.5)
+}
+input[type="text"]::-ms-input-placeholder {
+    font-size: 13px;
+    color: rgba(0,0,0,5)
+}
+.basic-txtarea{
+    width: 100%;
+    height: 150px;
+    min-width: 600px;
+    max-width: 1000px;
+    resize: vertical;
+    font-size: 16px;
+    margin:14px 0;
+    padding: 10px;
+}
+textarea::-moz-placeholder{
+    font-size: 13px;
+}
+textarea::-webkit-input-placeholder{
+    font-size: 13px;
+}
+textarea::-o-placeholder {
+    font-size: 13px;
+}
+textarea:-ms-input-placeholder {
+    font-size: 13px;
+    color: rgba(0,0,0,.5)
+}
+textarea::-ms-input-placeholder {
+    font-size: 13px;
+    color: rgba(0,0,0,5)
+}
+form .valid-error{
+    border-color: #f12525;
+}
+form select.valid-error{
+    border-color: #f12525;
+}
+/*按钮和文本*/
+.btn,.btn-base,.btn-new,.base-link{
+    font-size: 15px;
+}
+.title{
+     font-size: 18px;
+ }
+.btn-base{
+    padding: 10px 32px;
+    text-align: center;
+    height: 20px;
+    border: solid 1px #d6d6d6;
+    background: #edf1f3;
+    color: #5b5c5d;
+}
+.btn-new{
+    background: #f60;
+    color: #fff;
+    border: solid #f60 1px;
+    line-height: 20px;
+}
+.base-link{
+    color:#1583d7;
+    margin:0 0 1px 8px;
+    border-bottom: solid 1px ;
+    position: relative;
+    top:-1px;
+    cursor: pointer;
+}
+.base-link:hover{
+    text-decoration:none;
+    color:#1583d7;
+}
+.err-info{
+    font-size: 16px;
+    padding-left: 15px;
+    color: #f12525;
+}
+.red-font{
+    color: #f12525;
+}
+.blue-font{
+    color: #1583d7;
+}
+.catch{
+    color: #f60;
+}
+.carefor{
+    color: #f3a000;
+}
+.tip-txt,.field-tip{
+    font-size: 13px;
+    color: #8b8b8b;
+}
+.cencer-txt{
+    text-align: center;
+}
+.gray-bg{
+    background: #66697f;
+}
+.gree-bg{
+    background: #41dac6;
+}
+.red-bg{
+    background: #ff858e;
+}
+.blue-bg{
+    background: #56c5ee;
+}
+.purple-bg{
+    background: #9879de;
+}
+.yellow-bg{
+    background: #ffa65e;
+}
+/*checkbox设置*/
+.ages{
+    display: inline-block;
+    margin-right: 60px;
+}
+.choose-age{
+    margin-right: 30px;
+}
+.ages .yuan{
+    margin-bottom: -3px;
+}
+.hidden-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+.yuan{
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: 1px solid #878787;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
+input[type=radio]:checked+label .hei{
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background-color: #878787;
+    margin:3px;
+}
+input[type=radio]:checked+span {
+    background-color: #878787;
+}
+/*弹框设置*/
+.modal{
+    z-index: 10000;
+}
+.game-modal{
+    width: 873px;
+    margin-left: -428px;
+}
+.game-modal .modal-header{
+    background: #f2f2f2;
+    padding-left:30px;
+    border: 0;
+    font:300 20px "microsoft yahei";
+    line-height: 37px;
+}
+.game-modal-body,.kaifu-mbody{
+    padding: 69px 10px 30px 108px;
+    font-size: 16px;
+}
+.input-jifei{
+    width: 233px;
+}
+.game-modal-body tr,.kaifu-mbody tr{
+    line-height: 60px;
+}
+.game-modal-body tr td:first-child{
+    width: 125px;
+}
+.game-modal-body .basic-input[type="text"]{
+    width:100%;
+}
+.jifei-type{
+    padding-left: 25px;
+    margin-right: 53px;
+}
+.long-tip{
+    width: 263px;
+    margin:0;
+    display: inline-block;
+    line-height: 16px;
+    position: relative;
+    top: 9px;
+    font-size: 13px;
+}
+.game-modal-body .added{
+    padding-left: 13px;
+}
+.jifei-unit{
+    color: #000;
+    font-size: 16px;
+}
+.game-modal-footer{
+    text-align: center;
+    margin-bottom: 65px;
+}
+.game-modal-footer .cancel {
+    width: 150px;
+    padding: 9px 14px;
+    margin-left: 12px;
+    background: #f5f8fa;
+}
+.game-modal .basic-txtarea{
+    width: 92%;
+    height: 128px;
+}
+.xiajia-modal{
+    padding: 56px 76px 0 90px;
+}
+.xiajia-modal .close{
+    width: 40px;
+    font-family: sans-serif;
+}
+.sucess-modal{
+    text-align: center;
+    padding: 106px 120px 64px 116px;
+}
+.sucess-modal h1{
+    margin-bottom: 22px;
+}
+.sucess-modal .type-tip{
+    margin: 57px 0 65px 0 ;
+}
+.sucess-modal .btn-large{
+    width: 212px;
+}
+.now-online{
+    margin: 0 0 0 15px;
+}
+.timing-online{
+    display: block;
+    margin: 30px 0 0 100px;
+}
+.online-decs{
+    margin-left: -20px;
+}
+.form_time .add-on{
+    height: 14px;
+    width: 14px;
+    display:inline-block;
+    padding: 6px;
+    position: relative;
+    top:6px;
+    left: -35px;
+}
+.form_time input[readonly],.tuijian-ps input[readonly]{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-right: 0;
+    margin-left: 40px;
+}
+.bootstrap-datetimepicker-widget{
+    z-index: 10000;
+}
+.timing-online input[type=text],.charge-props3 input[type=text]{
+    width: 235px;
+    text-align: center;
+    margin-left: 8px;
+}
+.popover{
+    border:solid 1px #ccc;
+}
+/*框架*/
+.nav-north{
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+}
+.nav-west{
+    left: 0px;
+    top: 110px;
+    width: 200px;
+    z-index:2;
+    position: absolute;
+    overflow: hidden;
+    background: rgb(48, 106, 143);
+    height: 100%;
+/*    padding-top: 110px;*/
+}
+.nav-center{
+    position: absolute;
+    left: 200px;
+    top: 110px;
+}
+
+/**chenlei**/
+.social-search-box{
+    margin: 20px 0 20px 0;
+    width: 100%;
+    min-width: 870px;
+}
+.social-search-box .search-field-box{
+    width: 275px;
+    height: 38px;
+    position: relative;
+    background: url("../../images/xia-arrow.png") no-repeat right center;
+    border: 1px solid #d0d0d0;
+    /*display: inline-block;*/
+    margin-right: 15px;
+    cursor: pointer;
+    float: left;
+}
+.social-search-box .search-input-box{
+    width: 275px;
+    height: 38px;
+    position: relative;
+    /*background: url("../../images/xia-arrow.png") no-repeat right center;*/
+    border: 1px solid #d0d0d0;
+    /*display: inline-block;*/
+    margin-right: 15px;
+    cursor: pointer;
+    float: left;
+}
+.social-search-box .search-input-box input{
+    border: none;
+    height: 36px;
+    width: 273px;
+    padding-left: 10px;
+}
+.social-search-box .search-field-box input,.social-search-box .search-field-box select{
+    font-size: 16px;
+    /*width: 100%;*/
+    height: 100%;
+    border: none;
+    width: 235px;
+    padding-left: 10px;
+    line-height: 38px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.social-search-box .search-field-box input:focus,
+.social-search-box .search-field-box select:focus{
+    outline: none;
+}
+.social-search-box .search-field-box select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    /*border: solid 1px #000;*/
+    /*很关键：将默认的select选择框样式清除*/
+    width: 100%;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+
+    /*在选择框的最右侧中间显示小箭头图片*/
+    background: url("../../images/xia-arrow.png") no-repeat right center;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+}
+.social-search-box .search-field-box select option{
+    width: 100%;
+    padding: 10px 0;
+}
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+.social-search-box .search-field-box select::-ms-expand { display: none; }
+
+
+#sample-table-1_wrapper{
+    margin-top: 20px;
+}
+#sample-table-2_wrapper{
+    margin-top: 20px;
+}
+#sample-table-3_wrapper{
+    margin-top: 20px;
+}
+#sample-table-4_wrapper{
+    margin-top: 20px;
+}
+#sample-table-5_wrapper{
+    margin-top: 20px;
+}
+#sample-table-6_wrapper{
+    margin-top: 20px;
+}
+#sample-table-7_wrapper{
+    margin-top: 20px;
+}
+#sample-table-8_wrapper{
+    margin-top: 20px;
+}
+.dataTables_wrapper *:focus{
+    outline: 0;
+}
+.dataTables_wrapper .dataTables_paginate a:focus{
+    outline: 0;
+}
+.dataTables_length{
+    float: left;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.dataTables_length label,.dataTables_filter label{
+    font-weight: 400;
+    line-height: 38px;
+}
+.dataTables_filter input{
+    border: 1px solid #ddd;
+    width: 270px;
+    height: 38px;
+    padding-left: 10px;
+}
+.dataTables_filter{
+    float: right;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+table.dataTable thead .sorting_asc {
+    background-image: url("../../images/sort_asc.png");
+}
+table.dataTable thead .sorting_desc {
+    background-image: url("../../images/sort_desc.png");
+}
+/*#sample-table-2{*/
+    /*margin-top: 20px;*/
+/*}*/
+.dataTables_info{
+    float: left;
+    font-size: 14px;
+    padding: 6px 12px;
+}
+.dataTables_paginate.paging_simple_numbers{
+    float: right;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.428571429;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 14px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    background-color: #1790cf;
+    border-color: #1790cf;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+#sample-table-2_length,#sample-table-2_filter{/*隐藏表格搜索框和动态选择每页显示条数*/
+    /*display: none;*/
+}
+#sample-table-2 thead{
+    background: #ebebeb;
+}
+#sample-table-3 thead{
+    background: #ebebeb;
+}
+#sample-table-1 thead{
+    background: #ebebeb;
+}
+#sample-table-4 thead{
+    background: #ebebeb;
+}
+#sample-table-5 thead{
+    background: #ebebeb;
+}
+#sample-table-6 thead{
+    background: #ebebeb;
+}
+#sample-table-7 thead{
+    background: #ebebeb;
+}
+#sample-table-8 thead{
+    background: #ebebeb;
+}
+.ld-table thead tr th,.ld-table tr td{
+    vertical-align: middle;
+    text-align: center;
+}
+.echarts-tooltip{
+    pointer-events:none;
+}
+.ajax-mask{height:100%; width:100%; position: fixed; top: 0; left: 0; z-index: 10000; background: #000; opacity: 0.5; filter: alpha(opacity=50);}
+.ajax-loading{position: fixed; z-index: 10001; top: 50%; left: 50%; margin-top: -54px; margin-left: -47px;}
