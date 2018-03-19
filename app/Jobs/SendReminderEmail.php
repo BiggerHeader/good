@@ -2,24 +2,28 @@
 
 namespace App\Jobs;
 
+use App\Mail\SubscribesNotice;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class TestJob implements ShouldQueue
+class SendReminderEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    protected $obj;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(SubscribesNotice $subscribesNotice)
     {
-        //
+        //\
+        $this->obj = $subscribesNotice;
     }
 
     /**
@@ -29,8 +33,10 @@ class TestJob implements ShouldQueue
      */
     public function handle()
     {
+        $time = date('Y-m-d H:i:s');
+
+         echo  'swdfergyhjukilola' ;
         //
-//     注意事项 ：  如果队列在运行时，改变了任务类 处理操作 必须要重启 队列任务
-        echo 1233456790;
+       // error_log('1234567', 3, base_path('storage/logs/laravel.log'));
     }
 }

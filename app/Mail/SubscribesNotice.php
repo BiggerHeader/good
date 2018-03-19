@@ -12,7 +12,7 @@ class SubscribesNotice extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = '星期一商城订阅消息';
+    public $subject = '商城订阅消息';
     public $latest;
     public $hotest;
     public $likest;
