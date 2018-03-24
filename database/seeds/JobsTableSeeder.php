@@ -16,7 +16,7 @@ class JobsTableSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'waitmoonman',
-            'email' => '1033404553@qq.com',
+            'email' => '1343652445@qq.com',
             'password' => bcrypt('123456'),
             'avatar' => 'https://avatars2.githubusercontent.com/u/28035971',
             'active_token' => str_random(60),

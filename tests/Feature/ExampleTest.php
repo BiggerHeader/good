@@ -26,7 +26,7 @@ class ExampleTest extends TestCase
         // 创建调用至应用程序...
 
         $this->assertDatabaseHas('users', [
-            'email' => '1033404553@qq.com'
+            'email' => '1343652445@qq.com'
         ]);
     }
 }

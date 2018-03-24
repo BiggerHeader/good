@@ -144,7 +144,7 @@
             <b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
             <p class="foot">如果仍有问题，联系管理员:
                 <span  style="border-bottom: 1px dashed rgb(204, 204, 204);">
-                    <a href="mailto:1033404553@qq.com">1033404553@qq.com</a>
+                    <a href="mailto:1343652445@qq.com">1343652445@qq.com</a>
                 </span>
             </p>
         </div>
