@@ -54,7 +54,7 @@
                         statusCode: 10000, //成功的状态码，默认：0
                         msgName: 'msg', //状态信息的字段名称，默认：msg
                         countName: 'count', //数据总数的字段名称，默认：count
-                        dataName: 'list' //数据列表的字段名称，默认：data
+                        dataName: 'data' //数据列表的字段名称，默认：data
                     },
                     cols: [[ //表头
                         {field: 'uuid', title: '商品ID'},

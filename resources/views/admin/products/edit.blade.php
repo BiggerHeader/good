@@ -192,7 +192,7 @@
                                                 <td>未知</td>
                                                 <td><span style="color: #5FB878;">上传成功</span></td>
                                                 <td>
-                                                    <img src="{{ $value->link }}" />
+                                                    <img src="/storage/{{ $value->link }}" />
                                                     <button type="button" data-id="{{ $value->id }}" class="layui-btn layui-btn-mini layui-btn-danger  link_delte_btn">删除</button>
                                                 </td>
                                             </tr>
