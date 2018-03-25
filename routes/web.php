@@ -6,7 +6,7 @@ Route::get('sendmail', function (Illuminate\Http\Request $request) {
 });
 Route::get('/queue', 'Test\TqueueController@index');
 
-
+Route::post('/webhook', 'OtherController@webhook');
 /**********  auth  **********/
 Auth::routes();
 
