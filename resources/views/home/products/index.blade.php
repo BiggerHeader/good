@@ -13,7 +13,8 @@
 
                         @foreach ($productPinyins as $pinyin)
                             <span>
-                                <a class="pinyinBtn" href="javascript:;" data-pinyin="{{ $pinyin->first_pinyin }}">{{ $pinyin->first_pinyin }}</a>
+                                <a class="pinyinBtn" href="javascript:;"
+                                   data-pinyin="{{ $pinyin->first_pinyin }}">{{ $pinyin->first_pinyin }}</a>
                             </span>
                         @endforeach
                     </div>
@@ -25,7 +26,8 @@
                                 <ul>
                                     @if (isset($products[0]))
                                         @foreach ($products[0] as $product)
-                                            <li><a href="{{ url("/home/products/{$product->id}") }}"> {{ $product->name }} </a>
+                                            <li>
+                                                <a href="{{ url("/home/products/{$product->id}") }}"> {{ $product->name }} </a>
                                             </li>
                                         @endforeach
                                     @endif
@@ -35,7 +37,8 @@
                                 <ul>
                                     @if (isset($products[1]))
                                         @foreach ($products[1] as $product)
-                                            <li><a href="{{ url("/home/products/{$product->id}") }}"> {{ $product->name }} </a>
+                                            <li>
+                                                <a href="{{ url("/home/products/{$product->id}") }}"> {{ $product->name }} </a>
                                             </li>
                                         @endforeach
                                     @endif
@@ -45,7 +48,8 @@
                                 <ul>
                                     @if (isset($products[2]))
                                         @foreach ($products[2] as $product)
-                                            <li><a href="{{ url("/home/products/{$product->id}") }}"> {{ $product->name }} </a>
+                                            <li>
+                                                <a href="{{ url("/home/products/{$product->id}") }}"> {{ $product->name }} </a>
                                             </li>
                                         @endforeach
                                     @endif
@@ -74,12 +78,12 @@
         var loadImg = '<div style="background: #ddd"><img src="{{ asset('images/loading.svg') }}" style="width: 100%; height: auto;" alt=""></div>';
         var dataContainer = $('#data');
 
-        $('.pinyinBtn').click(function(){
+        $('.pinyinBtn').click(function () {
             var pinyin = $(this).data('pinyin');
-            var _url = url +  pinyin;
+            var _url = url + pinyin;
             dataContainer.html(loadImg);
-
-            $.get(_url, function(res){
+            var product_url = "{{ url("/home/products") }}/";
+            $.get(_url, function (res) {
 
                 var str = '';
 
@@ -87,7 +91,7 @@
                     var products = res[i];
                     str += '<li class="col-sm-4"><ul>';
                     for (var j in products) {
-                        str += "<li><a href="+ url + products[j]['id'] +">"+ products[j]['name'] +"</a></li>";
+                        str += "<li><a href=" + product_url + products[j]['id'] + ">" + products[j]['name'] + "</a></li>";
                     }
                     str += '</ul></li>';
                 }

@@ -35,12 +35,12 @@
                                 <span class="title" id="car_title">购物车</span>
                             </a>
                         </div>
-                        <div class="header-wishlist ml-20">
+                       {{-- <div class="header-wishlist ml-20">
                             <a href="{{ url('/user/likes') }}">
                                 <span class="icon lnr lnr-heart font-30"></span>
                                 <span class="title">收藏列表</span>
                             </a>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>

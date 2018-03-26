@@ -35,4 +35,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+
+    'github' => [
+        'client_id' => '133a9e90602c90a7cada',
+        'client_secret' => 'e711cd326af4be93f472757d6aa6b8adedcb4d28',
+        'redirect' => 'http://ileart.imwork.net/auth/github/callback',
+    ],
+
 ];

@@ -19,7 +19,8 @@ class AuthLoginController extends Controller
      */
     public function redirectToGithub()
     {
-        return Socialite::driver('github')->redirect();
+        //var_dump(Socialite::driver('github'));exit();
+        return Socialite::driver('github')->with(['access_token' => csrf_token()])->redirect();
     }
 
     /**
@@ -29,7 +30,7 @@ class AuthLoginController extends Controller
     public function handleGithubCallback()
     {
         $socialite = Socialite::driver('github')->user();
-
+        //dd($socialite);exit();
         return $this->handleProviderCallback($socialite);
     }
 
@@ -152,8 +153,7 @@ class AuthLoginController extends Controller
         ];
 
 
-
-        if (! User::where('name', $provider['nickname'])->first()) {
+        if (!User::where('name', $provider['nickname'])->first()) {
             $data['name'] = $provider['nickname'];
         }
 

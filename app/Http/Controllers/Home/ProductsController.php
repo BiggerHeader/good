@@ -38,7 +38,6 @@ class ProductsController extends Controller
     {
         $keyword = $request->input('keyword', '');
         $products = Product::where('name', 'like', "%{$keyword}%")->paginate(10);
-
         return view('home.products.search', compact('products'));
     }
 

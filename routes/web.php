@@ -2,7 +2,7 @@
 /*mail   test */
 Route::get('sendmail', function (Illuminate\Http\Request $request) {
     //Mail::to('1343652445@qq.com')->send(new \App\Mail\UserRegister($request->user()));
-
+    echo  csrf_token();
 });
 Route::get('/queue', 'Test\TqueueController@index');
 
