@@ -15,81 +15,93 @@
 
 @section('main')
     <div class="page-container">
-        @if (session()->has('status'))
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                {{ session('status') }}
-            </div>
-        @endif
-        <div class="form-group skin-minimal">
-            <div class="mt-20 skin-minimal">
-                <div class="radio-box">
-                    <input type="radio" id="radio" name="demo-radio" checked value="-1">
-                    <label for="radio-2">全部</label>
-                </div>
-                <div class="radio-box">
-                    <input type="radio" id="radio" name="demo-radio" value="0">
-                    <label for="radio-1">未发货</label>
-                </div>
-                <div class="radio-box">
-                    <input type="radio" id="radio" name="demo-radio" value="1">
-                    <label for="radio-1">发货</label>
-                </div>
-                <div class="radio-box">
-                    <input type="radio" id="radio" name="demo-radio" value="2">
-                    <label for="radio-1">已确认收货</label>
-                </div>
-            </div>
-            <input type="text" placeholder="输入订单ID" class="input-text radius size-L" id="orderid" name="orderid">
-            <input class="btn btn-primary size-L radius" type="button" name="tijao" id="tijao" value="查询">
-        </div>
-        <div class="mt-20">
-            <table class="table table-border table-bordered table-bg table-hover table-sort">
-                <thead>
-                <tr class="text-c">
-                    <th width="40">订单iD</th>
-                    <th width="60">创建时间</th>
-                    <th width="100">状态</th>
-                    <th width="100">操作</th>
-                </tr>
-                </thead>
-                <tbody>
+        <table id="demo" class="layui-table" lay-filter="demo"></table>
+        <script type="text/html" id="order_status">
+            <input type="checkbox" order_id="@{{ d.id }}" uuid="@{{ d.uuid }}" name="status" value="@{{d.status}}"
+                   lay-skin="switch" lay-text="已发货|未发货" lay-filter="status" @{{ d.status =='1'  ? 'checked' : '' }}>
+        </script>
+        <script type="text/html" id="checkboxTpl">
+            <input type="checkbox" name="lock"  uuid="@{{ d.uuid }}"  value="@{{d.id}}" title="订单置无效" lay-filter="lockDemo" @{{ d.status == '3' ? 'checked' : '' }}>
+        </script>
+        <style>
+            [data-field="thumb"] .layui-table-cell {
+                height: auto;
+            }
+        </style>
+        <script>
+            var tableOption = {
+                elem: '#demo',
+                url: 'http://yaf.com/order/order/get',
+                page: true,
+                request: {
+                    limitName: 'pageSize'
+                },
+                response: {
+                    statusName: 'code', //数据状态的字段名称，默认：code
+                    statusCode: 10000, //成功的状态码，默认：0
+                    msgName: 'msg', //状态信息的字段名称，默认：msg
+                    countName: 'count', //数据总数的字段名称，默认：count
+                    dataName: 'data' //数据列表的字段名称，默认：data
+                },
+                cols: [[ //表头
+                    {field: 'uuid', title: '订单ID'},
+                    {field: 'total_money', title: '原总金额'},
+                    {field: 'change_money', title: '改动金额(可直接编辑)',edit: 'text'},
+                    {field: 'created_at', title: '创建时间', sort: true},
+                    {field: 'detail_address', title: '地址'},
+                    {field: 'status', title: '订单状态', templet: '#order_status',width:100},
+                    {field:'lock', title:'是否锁定', width:110, templet: '#checkboxTpl', width:160}
+                ]]
+            };
+            layui.use('table', function () {
+                var table = layui.table;
+                var form = layui.form;
+                var tableIns = table.render(tableOption);
+                //监听单元格编辑
+                table.on('edit(demo)', function(obj){
+                    var value = obj.value //得到修改后的值
+                        ,data = obj.data //得到所在行所有键值
+                        ,field = obj.field; //得到字段
+                    change_order_money(data.id, data.uuid, value,tableIns);
+                });
 
-                @foreach ($orders as $order)
-                    <tr style="padding-left: 20px;">
-                        <td class="time">
-                            <p>
-                                <a class="uuid" href="{{ url("/user/orders/{$order->id}") }}">{{ $order->uuid }}</a>
-                            </p>
-                        </td>
-                        <td class="title name">
-                            <p class="content">
-                                {{ $order->created_at }}
-                            </p>
-                        </td>
+                //监听锁定操作
+                form.on('checkbox(lockDemo)', function(obj){
+                    var order_id = obj.value;
+                    var uuid = $(obj.elem).attr('uuid')
+                    change_order_status(order_id, uuid, '3',tableIns);
+                });
+                //监听性别操作
+                form.on('switch(status)', function (obj) {
+                    layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
+                    console.log(obj);
+                    var value = obj.value;
+                    var order_id = $(obj.elem).attr('order_id')
+                    var uuid = $(obj.elem).attr('uuid')
+                    change_order_status(order_id, uuid, value,tableIns);
+                });
+                //监听工具条
+                table.on('tool(demo)', function (obj) {
+                    console.log(obj);
+                    var data = obj.data;
+                    var is_alive = data.is_alive;
+                    //上下架
+                    if (obj.event === 'status') {
+                        layer.msg('ID：' + data.uuid + ' 的查看操作');
+                        product_stop(data.id, data.is_alive, tableIns);
+                    } else if (obj.event === 'delete') {
+                        layer.confirm('真的删除行么', function (index) {
+                            product_del(data.id);
+                        });
+                    }
+                });
 
-                        <td class="amount">
-                            <span class="amount-pay">{{ $order->total_money }}</span>
-                        </td>
-                        <td>
-                            @if($order->status == 0 )
-                                <input class="btn btn-primary-outline radius" type="button"
-                                       onClick="change_order_status(this, '{{ $order->uuid }}')" value="发货">
-                                <input type="hidden" id="status" name="status" value="1">
-
-                            @else
-                                <input class="btn btn-warning-outline radius" type="button"
-                                       onClick="change_order_status(this, '{{ $order->uuid }}')" value="取消发货">
-                                <input type="hidden" id="status" name="status" value="0">
-
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+                $('.demoTable .layui-btn').on('click', function () {
+                    var type = $(this).data('type');
+                    active[type] ? active[type].call(this) : '';
+                });
+            });
+        </script>
     </div>
 @endsection
 
@@ -121,45 +133,56 @@
             })
         })
 
-        function change_order_status(obj, uuid) {
-            var status_obj = $(obj).next();
-            var status = $(obj).next().val();
-            layer.confirm('确认要发货吗？', function (index) {
-                    layer.close(index);
-                    var url = "{{ url('/admin/order/modify') }}";
-
-                    $.ajax({
-                        url: url,
-                        dataType: 'json',
-                        type: 'POST',
-                        data: {
-                            uuid: uuid,
-                            status: status,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function (res) {
-                            if (res.code == 200) {
-                                if (res.status == 0) {
-                                    //0 =》 1 已经发货
-                                    $(obj).addClass('btn-primary-outline').removeClass('btn-warning-outline').val('发货');
-                                    status_obj.val(1)
-                                } else {
-                                    //已经发货
-                                    $(obj).removeClass('btn-primary-outline').addClass('btn-warning-outline').val('取消发货');
-                                    status_obj.val(0)
-                                }
-                                layer.msg(res.msg, {icon: 1, time: 1000});
-
-                            } else {
-                                layer.msg('修改失败！', {icon: 2, time: 1000});
+        function change_order_money(id, uuid, value,table){
+            var url = "http://yaf.com/order/order/modify";
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'POST',
+                data: JSON.stringify({
+                    id: id,
+                    uuid: uuid,
+                    change_money: value
+                }),
+                success: function (res) {
+                    if (res.code == 10000) {
+                        layer.msg(res.msg, {icon: 1, time: 1000});
+                        table.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
                             }
-                        }
-
-                    })
-                    ;
+                        })
+                    } else {
+                        layer.msg(res.msg, {icon: 2, time: 1000});
+                    }
                 }
-            )
-            ;
+            });
+        }
+
+        function change_order_status(id, uuid, status,table) {
+            var url = "http://yaf.com/order/order/modify";
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'POST',
+                data: JSON.stringify({
+                    id: id,
+                    uuid: uuid,
+                    status: status
+                }),
+                success: function (res) {
+                    if (res.code == 10000) {
+                        layer.msg(res.msg, {icon: 1, time: 1000});
+                        table.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        })
+                    } else {
+                        layer.msg(res.msg, {icon: 2, time: 1000});
+                    }
+                }
+            });
         }
     </script>
 

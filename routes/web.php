@@ -6,7 +6,7 @@ Route::get('sendmail', function (Illuminate\Http\Request $request) {
 });
 Route::get('/queue', 'Test\TqueueController@index');
 
-
+Route::post('/webhook', 'OtherController@webhook');
 /**********  auth  **********/
 Auth::routes();
 
@@ -68,7 +68,7 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
 
     // user order show and index
     Route::post('/orders/single', 'OrdersController@single');
-    Route::resource('/orders', 'OrdersController', ['only' => ['index', 'store', 'show']]);
+    Route::resource('/orders', 'OrdersController');
     //user choose address  if not else redirect
     Route::get('/choose/address/{order_id}', 'OrdersController@getChooseAddress')->name('choose_address');
     Route::post('/submit/address', 'OrdersController@setOrderAddress');

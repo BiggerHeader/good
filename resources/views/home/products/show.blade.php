@@ -298,7 +298,7 @@
                         <div class="clear"></div>
 
                         <ul id="comments" class="am-comments-list am-comments-list-flip">
-                            <li class="am-comment">
+                          {{--  <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="">
                                     <img class="am-comment-avatar" src="{{asset('assets/user/images/hwbn40x40.jpg')}}"/>
@@ -331,7 +331,7 @@
                                     </div>
                                     <!-- 评论内容 -->
                                 </div>
-                            </li>
+                            </li>--}}
                         </ul>
 
                         <div class="clear"></div>
@@ -465,8 +465,10 @@
         $('#submit').click(function () {
             var comment = {};
             comment.content = $('#comment_content').val();
-            comment.user_id = "{{Auth::guard()->user()->id}}";
-            comment.product_id = product_id;
+            @if (Auth::guard()->user())
+                comment.user_id = "{{ Auth::guard()->user()->id}}";
+            @endif
+                comment.product_id = product_id;
             if (comment.content.length > 5) {
                 $.ajax({
                     url: "http://yaf.com/comment/comment/add",

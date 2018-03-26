@@ -26,7 +26,7 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="{{ url('/admin/orders/-1') }}" data-title="商品列表"
+                    <li><a data-href="{{ url('/admin/orders/-1') }}" data-title="订单列表"
                            href="javascript:void(0)">订单列表</a>
                     </li>
                 </ul>
