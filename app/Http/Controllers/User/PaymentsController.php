@@ -18,17 +18,18 @@ class PaymentsController extends ApiController
 {
     public function index($order_id)
     {
-        $data = Order::where('id', $order_id)->select('total_money','id','uuid')->first()->toArray();
-        return view('user.payments.index',compact('data'));
+        $data = Order::where('id', $order_id)->select('total_money', 'id', 'uuid', 'change_money')->first()->toArray();
+        return view('user.payments.index', compact('data'));
     }
 
     public function pay(Request $request)
     {
+
         if (($validator = $this->validatePayParam($request->all()))->fails()) {
-            dd($validator);
             return $this->setCode(303)->setMsg($validator->errors()->first());
         }
         $pay_data = $this->getFormData($request->only(['price', 'istype', 'orderuid']));
+
         CreatePayment::dispatch($pay_data);
 
         return $this->setMsg('生成支付信息成功')->setData($pay_data)->toJson();
@@ -45,7 +46,6 @@ class PaymentsController extends ApiController
         $Key = $request->input('key');
 
 
-
         if (md5($temps) != $Key) {
             file_put_contents('pay.log', "校验出错 \r\n", FILE_APPEND);
             return $this->setCode(303)->setMsg('校验出错')->toJson();
@@ -53,7 +53,7 @@ class PaymentsController extends ApiController
 
         $payment = Payment::where('orderid', $pay_data['orderid'])->first();
 
-        if (! $payment) {
+        if (!$payment) {
             file_put_contents('pay.log', "不存在此次支付 \r\n", FILE_APPEND);
             return $this->setCode(305)->setMsg('不存在此次支付')->toJson();
         }
@@ -84,7 +84,7 @@ class PaymentsController extends ApiController
         return Validator::make($data, [
             'price' => 'required|numeric',
             'istype' => 'in:1,2',
-            'orderuid' => 'required|exists:users,id',
+            'orderuid' => 'required|string',
             //'goodsname' => 'required|exists:products,name'
         ]);
     }
@@ -96,12 +96,12 @@ class PaymentsController extends ApiController
             'token' => config('payment.token'),
             'notify_url' => config('payment.notify_url'),
             'return_url' => config('payment.return_url'),
-            'orderid' => Uuid::generate()->hex,
+            'orderid' => $data['orderuid'],
         ];
 
-        if (mb_strlen($data['goodsname'], 'utf8') > 8) {
+       /* if (mb_strlen($data['goodsname'], 'utf8') > 8) {
             $data['goodsname'] = mb_substr($data['goodsname'], 0, 8, 'utf8');
-        }
+        }*/
 
         $data = array_merge($sys_data, $data);
         ksort($data);

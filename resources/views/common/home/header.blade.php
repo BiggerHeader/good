@@ -6,9 +6,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-4 is-hidden-sm-down">
                     <ul class="nav-top nav-top-left list-inline t-left">
-                        <li><a href="https://baidu.com"><i class="fa fa-question-circle"></i>指南</a>
-                        </li>
-                        <li><a href="https://baidu.com"><i class="fa fa-support"></i>帮助</a>
+                        <li><a href="{{url('/feedback')}}"><i class="fa fa-question-circle"></i>意见反馈</a>
                         </li>
                     </ul>
                 </div>

@@ -84,7 +84,7 @@ class OrdersController extends Controller
                 'order_id' => $res->id,
                 'product_id' => $key,
                 'numbers' => $item,
-                'user_id' =>$user_id ,
+                'user_id' => $user_id,
             ];
             Product::where('id', $key)->increment(['safe_count' => $item]);
         }
@@ -130,9 +130,10 @@ class OrdersController extends Controller
             ->first()
             ->decrement('count', $detail_data['numbers']);
 
+        //调到支付页面
         return [
-            'code' => 0,
-            'msg' => '购买成功'
+            'code' => 200,
+            'msg' => route('choose_address', ['order_id' => $order->id])
         ];
     }
 
@@ -186,8 +187,8 @@ class OrdersController extends Controller
         $numbers = $request->input('numbers');
         $address_id = $request->input('address_id');
         $uuid = Uuid::generate()->hex;
-        $total = Product::find($product_id)->price * $numbers;
+        $total_money = Product::find($product_id)->price * $numbers;
 
-        return compact('product_id', 'total', 'uuid', 'address_id');
+        return compact('product_id', 'total_money', 'uuid', 'address_id');
     }
 }

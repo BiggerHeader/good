@@ -19,4 +19,12 @@ class HomeController extends Controller
 
         return view('home.homes.index', compact('categories', 'hotProducts', 'latestProducts', 'users'));
     }
+
+    /*
+     * 意见反馈
+     * */
+    public function feedback()
+    {
+        return view('home.homes.feedback');
+    }
 }

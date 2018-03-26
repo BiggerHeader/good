@@ -111,9 +111,13 @@ Route::middleware(['admin.auth', 'admin.permission'])->prefix('admin')->namespac
     Route::post('/order/modify', 'OrdersController@modify');
 
     Route::get('/test', 'OrdersController@test');
+    //获取反馈数据
+    Route::get('/feedback', 'CommentsController@feedback');
 
     Route::resource('/productImages', 'ProductImagesController', ['only' => ['index', 'destroy']]);
     Route::resource('/users', 'UsersController', ['only' => ['index']]);
     Route::resource('/admins', 'AdminsController');
     Route::resource('/roles', 'RolesController');
 });
+
+Route::get('/feedback', 'Home\HomeController@feedback');

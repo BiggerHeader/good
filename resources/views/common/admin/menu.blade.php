@@ -68,7 +68,8 @@
                 <ul>
                     <li><a data-href="{{ url('/admin/comments') }}" data-title="评论列表" href="javascript:;">评论列表</a>
                     </li>
-                    <li><a data-href="feedback-list.html" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
+                    <li><a data-href="{{url('/admin/feedback')}}" data-title="意见反馈" href="javascript:void(0)">意见反馈</a>
+                    </li>
                 </ul>
             </dd>
         </dl>

@@ -52,17 +52,17 @@
             </ul>
         </div>
         <div class="clear"></div>
-
-        <!--订单 -->
-        <div class="clear"></div>
-
-
         <!--信息 -->
         <div class="order-go clearfix">
             <div class="pay-confirm ">
                 <form id="post_form">
                     {{ csrf_field() }}
-                    价钱：<input type="text" name="price" value="{{$data['total_money']}}">
+                    价钱：
+                    @if($data['change_money'] != 0)
+                        <input type="text" name="price" value="{{$data['change_money']}}" readonly>
+                    @else
+                        <input type="text" name="price" value="{{$data['total_money']}}" readonly>
+                    @endif
                     {{--<input type="text" name="price" autofocus onfocus="this.value=((Math.random()*5+1)/100).toFixed(2)">--}}
                     <input type="hidden" name="istype" value="1">
                     <input type="hidden" name="orderuid" value="{{$data['uuid']}}">
@@ -104,7 +104,7 @@
         var data = $('form').serialize();
         var that = $(this);
 
-        that.attr('disabled', true);
+        // that.attr('disabled', true);
 
         $.post(url, data, function (res) {
             that.attr('disabled', false);

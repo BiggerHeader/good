@@ -48,7 +48,7 @@
                     {field: 'total_money', title: '原总金额'},
                     {field: 'change_money', title: '改动金额(可直接编辑)',edit: 'text'},
                     {field: 'created_at', title: '创建时间', sort: true},
-                    {field: 'detail_address', title: '地址'},
+                    {field: 'detail_address', title: '详细地址'},
                     {field: 'status', title: '订单状态', templet: '#order_status',width:100},
                     {field:'lock', title:'是否锁定', width:110, templet: '#checkboxTpl', width:160}
                 ]]

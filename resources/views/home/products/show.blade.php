@@ -64,26 +64,6 @@
                         </li>
                         <div class="clear"></div>
                     </div>
-
-                    <!--地址-->
-                    {{-- <dl class="iteminfo_parameter freight">
-                         <dt>收货地址</dt>
-                         <div class="iteminfo_freprice">
-                             <div class="am-form-content address">
-
-                                 @if (Auth::check())
-                                     <select data-am-selected name="address_id">
-                                         @foreach (Auth::user()->addresses as $address)
-                                             <option value="{{ $address->id }}">{{ $address->name }}/{{ $address->phone }}</option>
-                                         @endforeach
-                                     </select>
-                                 @else
-                                     <a style="line-height:27px;color:red;" href="{{ url('user')  }}">添加收货地址</a>
-                                 @endif
-
-                             </div>
-                         </div>
-                     </dl>--}}
                     <div class="clear"></div>
 
                     <!--销量-->
@@ -575,7 +555,11 @@
             };
             console.log(data);
             $.post('{{ url('user/orders/single') }}', data, function (res) {
-                layer.msg(res.msg);
+                if(res.code == 200){
+                    window.location.href=res.msg;
+                }else {
+                    layer.msg('系统繁忙，稍后再试！');
+                }
             });
 
             /** v请求支付 **/

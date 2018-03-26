@@ -19,4 +19,10 @@ class CommentsController extends Controller
         return view('admin.comments.index');
     }
 
+    public function feedback()
+    {
+        return view('admin.comments.feedback');
+    }
+
+
 }
