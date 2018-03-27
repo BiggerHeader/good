@@ -31,7 +31,7 @@
         <script>
             var tableOption = {
                 elem: '#demo',
-                url: 'http://yaf.com/order/order/get',
+                url: 'http://yaf.dtcode.cn/order/order/get',
                 page: true,
                 request: {
                     limitName: 'pageSize'
@@ -134,7 +134,7 @@
         })
 
         function change_order_money(id, uuid, value,table){
-            var url = "http://yaf.com/order/order/modify";
+            var url = "http://yaf.dtcode.cn/order/order/modify";
             $.ajax({
                 url: url,
                 dataType: 'json',
@@ -160,7 +160,7 @@
         }
 
         function change_order_status(id, uuid, status,table) {
-            var url = "http://yaf.com/order/order/modify";
+            var url = "http://yaf.dtcode.cn/order/order/modify";
             $.ajax({
                 url: url,
                 dataType: 'json',

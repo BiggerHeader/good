@@ -174,7 +174,7 @@
                     }
                 },
                 ajax: {
-                    url: 'http://yaf.com/schoole/schoole/get',
+                    url: 'http://yaf.dtcode.cn/schoole/schoole/get',
                     dataType: 'json',
                     delay: 30,
                     data: function (params) {

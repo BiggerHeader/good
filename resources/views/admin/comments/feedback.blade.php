@@ -17,7 +17,7 @@
     <script>
         var tableOption = {
             elem: '#demo',
-            url: 'http://yaf.com/feedback/feedback/get',
+            url: 'http://yaf.dtcode.cn/feedback/feedback/get',
             page: true,
             where: {},
             request: {
@@ -56,7 +56,7 @@
         });
 
         function change_order_status(id, value, table) {
-            var url = "http://yaf.com/feedback/feedback/modify";
+            var url = "http://yaf.dtcode.cn/feedback/feedback/modify";
             $.ajax({
                 url: url,
                 dataType: 'json',

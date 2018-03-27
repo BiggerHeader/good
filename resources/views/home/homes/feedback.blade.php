@@ -45,7 +45,7 @@
 @section('script')
     <script src="{{ asset('assets/user/layer/2.4/layer.js') }}"></script>
     <script>
-        var url = "http://yaf.com/feedback/feedback/add";
+        var url = "http://yaf.dtcode.cn/feedback/feedback/add";
         $('#tijao').click(function () {
             var name = $('#exampleInputName2').val(), email = $('#exampleInputEmail2').val(),
                 content = $("textarea[name=content]").val();

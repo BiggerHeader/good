@@ -393,7 +393,7 @@
         function getPageContent() {
             // ajax 获取评论列表
             $.ajax({
-                url: 'http://yaf.com/comment/comment/get/product_id',
+                url: 'http://yaf.dtcode.cn/comment/comment/get/product_id',
                 type: 'get',
                 data: {product_id: product_id, page: page, pageSize: pageSize},
                 dataType: "json",
@@ -451,7 +451,7 @@
                 comment.product_id = product_id;
             if (comment.content.length > 5) {
                 $.ajax({
-                    url: "http://yaf.com/comment/comment/add",
+                    url: "http://yaf.dtcode.cn/comment/comment/add",
                     data: JSON.stringify(comment),
                     type: 'post',
                     dataType: "json",

@@ -44,7 +44,7 @@
             <script>
                 var tableOption = {
                     elem: '#demo',
-                    url: 'http://yaf.com/product/product/get',
+                    url: 'http://yaf.dtcode.cn/product/product/get',
                     page: true,
                     request: {
                         limitName: 'pageSize'
@@ -159,7 +159,7 @@
         /*产品-删除*/
         function product_del(id) {
             $.ajax({
-                url: 'http://yaf.com/product/product/delete',
+                url: 'http://yaf.dtcode.cn/product/product/delete',
                 data: JSON.stringify({id: id}),
                 type: 'POST',
                 contentType: 'application/json',

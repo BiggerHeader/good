@@ -18,7 +18,7 @@
             var table = layui.table;
             table.render({
                 elem: '#demo',
-                url: 'http://yaf.com/comment/comment/get',
+                url: 'http://yaf.dtcode.cn/comment/comment/get',
                 page: true,
                 where: {
                     product_id: 278
