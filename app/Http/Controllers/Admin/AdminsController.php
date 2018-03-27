@@ -15,8 +15,6 @@ class AdminsController extends Controller
     public function index()
     {
         $admins = Admin::latest()->get();
-
-
         return view('admin.admins.index', compact('admins'));
     }
 
