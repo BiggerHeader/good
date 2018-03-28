@@ -24,7 +24,7 @@
                         <img src="{{ $productPresenter->getThumbLink($product->thumb) }}" alt="{{ $product->name }}"
                              id="jqzoom"/>
                     </div>
-                   {{-- <ul class="tb-thumb" id="thumblist">
+                    <ul class="tb-thumb" id="thumblist">
                         @foreach ($product->productImages as $key => $image)
                             <li class="{{ $key == 0 ? 'tb-selected' : '' }}">
                                 <div class="tb-pic tb-s40">
@@ -34,7 +34,7 @@
                                 </div>
                             </li>
                         @endforeach
-                    </ul>--}}
+                    </ul>
                 </div>
 
                 <div class="clear"></div>
