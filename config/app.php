@@ -164,6 +164,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        'Latrell\Alipay\AlipayServiceProvider',
+
         /*
          * Package Service Providers...
          */

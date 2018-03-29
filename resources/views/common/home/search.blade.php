@@ -55,6 +55,6 @@
         car_nums_span.innerText = parseInt("{{ Auth::user()->cars->count() }}");
     @endauth
     @guest
-        car_nums_span.innerText = localStorage.length;
+           localStorage.clear();
     @endguest
 </script>

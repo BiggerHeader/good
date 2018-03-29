@@ -40,7 +40,7 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
-
+$app->register(Latrell\Alipay\AlipayServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application

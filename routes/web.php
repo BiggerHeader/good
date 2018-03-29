@@ -75,6 +75,9 @@ Route::middleware(['user.auth'])->prefix('user')->namespace('User')->group(funct
     // user payments
     Route::get('/pay/show/{order_id}', 'PaymentsController@index')->name('pay_page');
     Route::post('/pay/store', 'PaymentsController@pay');
+
+    //alipay   request
+    Route::get('/alipayshow', 'AlipayController@alipayshow');
 });
 // user payments !!! If [user.auth] is validated, infinite jumps will occur
 Route::get('/user/pay/return', 'User\PaymentsController@payreturn');
