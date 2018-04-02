@@ -67,14 +67,25 @@ class LoginController extends Controller
             $user = $this->guard()->user();
 
             // If the user is not activated
-            if ($user->is_active != 1)
-            {
+            if ($user->is_active != 1) {
                 Auth::logout();
 
                 // Get activation link and alert
                 $link = $this->userService->getActiveLink($user);
                 return redirect('login')->withInput()->withErrors([$this->username() => $link]);
             }
+
+            //添加最近登录 的用户到  Redis 里面   以显示活跃用户
+            $redis = new  \Redis();
+            $redis->connect('127.0.0.1', 6379);
+            $redis->auth('');
+            //获取队列长度
+            if ($redis->lLen('active_user_list') > 10) {
+                //删除 列表中多余数据
+                $redis->lTrim('active_user_list', 11, -1);
+            }
+
+            $redis->lPush('active_user_list', json_encode($user->toArray(), JSON_UNESCAPED_UNICODE));
 
             return $this->sendLoginResponse($request);
         }

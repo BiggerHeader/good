@@ -53,13 +53,20 @@ class ProductsController extends Controller
         $product->productImages()->createMany($product_images_data);
         // add product attributes data
         $product->productAttributes()->createMany($product_attributes_data);
-
+        $redis = new  \Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $redis->auth('');
+        $prefix = 'home:';
+        $name = 'latestProducts';
+        if ($redis->exists($prefix . $name)) {
+            $redis->del($prefix . $name);
+        }
         return back()->with('status', '添加商品成功');
     }
 
     public function show(Product $product)
     {
-        return redirect('/home/products/'. $product->id);
+        return redirect('/home/products/' . $product->id);
     }
 
 
@@ -105,7 +112,6 @@ class ProductsController extends Controller
 
         return back()->with('status', '删除商品成功');
     }
-
 
 
     /**

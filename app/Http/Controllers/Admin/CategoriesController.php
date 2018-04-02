@@ -37,7 +37,7 @@ class CategoriesController extends Controller
     public function store(CategoryRequest $request)
     {
         // move file to public
-        if (! $link = $request->file('thumb')->store(config('web.upload.category'), 'public')) {
+        if (!$link = $request->file('thumb')->store(config('web.upload.category'), 'public')) {
 
             return back()->withErrors(['thumb' => '文件上传失败']);
         }
@@ -52,7 +52,14 @@ class CategoriesController extends Controller
 
             Category::find($data['parent_id'])->children()->create($data);
         }
-
+        $redis = new  \Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $redis->auth('');
+        $prefix = 'home:';
+        $name = 'categories';
+        if ($redis->exists($prefix . $name)) {
+            $redis->del($prefix . $name);
+        }
         return back()->with('status', '创建分类成功');
     }
 
@@ -64,7 +71,14 @@ class CategoriesController extends Controller
     public function edit(Category $category)
     {
         $categories = $this->categoryService->getTransformCategories();
-
+        $redis = new  \Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $redis->auth('');
+        $prefix = 'home:';
+        $name = 'categories';
+        if ($redis->exists($prefix . $name)) {
+            $redis->del($prefix . $name);
+        }
         return view('admin.categories.edit', compact('category', 'categories'));
     }
 
@@ -73,6 +87,15 @@ class CategoriesController extends Controller
         $data = $this->getRequestForm($request);
 
         if ($category->update($data)) {
+            $redis = new  \Redis();
+            $redis->connect('127.0.0.1', 6379);
+            $redis->auth('');
+            $prefix = 'home:';
+            $name = 'categories';
+            if ($redis->exists($prefix . $name)) {
+                $redis->del($prefix . $name);
+            }
+
             return back()->with('status', '修改成功');
         } else {
             return back()->with('status', '服务器出错，请稍后再试');
@@ -101,7 +124,7 @@ class CategoriesController extends Controller
         }
 
 
-        if(request()->ajax()) {
+        if (request()->ajax()) {
             return $response;
         }
 

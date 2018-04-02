@@ -1,10 +1,10 @@
-@extends('layouts.admin')
 
-@section('style')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-@endsection
 
-@section('main')
+<?php $__env->startSection('style'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('main'); ?>
   <div class="pd-20">
     <table class="table table-border table-bordered table-hover table-bg table-sort">
       <thead>
@@ -18,19 +18,21 @@
       </tr>
       </thead>
       <tbody>
-        @inject('userPresenter', 'App\Presenters\UserPresenter')
-        @foreach ($users as $user)
+        <?php $userPresenter = app('App\Presenters\UserPresenter'); ?>
+        <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <tr class="text-c">
             <td>
               <u style="cursor:pointer" class="text-primary">
-                {{ $user->name }}
+                <?php echo e($user->name); ?>
+
               </u>
             </td>
-            <td><img src="{{ $userPresenter->getAvatarLink($user->avatar) }}" style="width: 40px;height: 40px;"></td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->created_at }}</td>
+            <td><img src="<?php echo e($userPresenter->getAvatarLink($user->avatar)); ?>" style="width: 40px;height: 40px;"></td>
+            <td><?php echo e($user->email); ?></td>
+            <td><?php echo e($user->created_at); ?></td>
             <td class="user-status">
-              {!! $userPresenter->getStatusSpan($user->is_active) !!}
+              <?php echo $userPresenter->getStatusSpan($user->is_active); ?>
+
             </td>
             <td class="f-14 user-manage">
               <a style="text-decoration:none" onClick="user_stop(this,'10001')" href="javascript:;" title="停用"><i class="icon-hand-down"></i></a>
@@ -39,11 +41,13 @@
               <a title="删除" href="javascript:;" onclick="user_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="icon-trash"></i></a>
             </td>
           </tr>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </tbody>
     </table>
     <div id="pageNav" class="pageNav">
-        {{ $users->links() }}
+        <?php echo e($users->links()); ?>
+
     </div>
   </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

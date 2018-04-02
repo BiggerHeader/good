@@ -3,6 +3,10 @@
 /public/storage
 /resources/views/templates
 /storage/app/public
+/storage/framework/cache
+/storage/framework/views
+/storage/framework/testing
+/storage/framework/session
 /storage/*.key
 /storage/*.log
 /vendor
