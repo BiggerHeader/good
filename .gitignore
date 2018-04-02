@@ -7,6 +7,7 @@
 /storage/framework/views
 /storage/framework/testing
 /storage/framework/session
+/storage/framework/logs
 /storage/*.key
 /storage/*.log
 /vendor
