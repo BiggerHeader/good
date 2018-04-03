@@ -64,7 +64,7 @@ on p.category_id = c.id
         $name = 'hotProducts';
         if (!$redis->exists($prefix . $name)) {
             //缓存不存在
-            $data = DB::select("select count,name,id,price,thumb from products a LEFT JOIN  (SELECT  count(*) as count,product_id  FROM  likes_products  GROUP BY product_id )b  on a.id=b.product_id order  by  safe_count desc limit 3");
+            $data = DB::select("select name, from users a LEFT JOIN  (SELECT  count(*) as count,product_id  FROM  likes_products  GROUP BY product_id )b  on a.id=b.product_id order  by  safe_count desc limit 10");
             $json = json_encode($data, JSON_UNESCAPED_UNICODE);
             //存入redis
             $redis->set($prefix . $name, $json);
@@ -73,11 +73,23 @@ on p.category_id = c.id
         }
 
 
+        $name = 'users';
+        if (!$redis->exists($prefix . $name)) {
+            //缓存不存在
+            $data = DB::select("select name,avatar from users   order  by  login_count desc limit 10");
+            $json = json_encode($data, JSON_UNESCAPED_UNICODE);
+            //存入redis
+            $redis->set($prefix . $name, $json);
+            //设置过期时间 一天
+            $redis->expire($prefix . $name, 60 * 60 * 24);
+        }
+
         $categories = $redis->get($prefix . 'categories');
         $hotProducts = $redis->get($prefix . 'hotProducts');
         $latestProducts = $redis->get($prefix . 'latestProducts');
+        $users = $redis->get($prefix . 'users');
 
-        $users = json_decode($redis->lRange('active_user_list',0,-1), JSON_UNESCAPED_UNICODE);
+        $users = json_decode($users, JSON_UNESCAPED_UNICODE);
 
         $hotProducts = json_decode($hotProducts, JSON_UNESCAPED_UNICODE);
         $latestProducts = json_decode($latestProducts, JSON_UNESCAPED_UNICODE);

@@ -11,6 +11,7 @@ use Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
 class TqueueController extends Controller
 {
 
@@ -20,10 +21,12 @@ class TqueueController extends Controller
         echo $path;
         var_dump( file_exists($path));*/
         //吧 这个请求  分配到 对应的队列中
-        error_log('cccc', 3, base_path('storage/logs/laravel.log'));
+        /*error_log('cccc', 3, base_path('storage/logs/laravel.log'));
 
-        dispatch(new SendReminderEmail(new SubscribesNotice()));
+        dispatch(new SendReminderEmail(new SubscribesNotice()));*/
     }
 
-
 }
+
+
+

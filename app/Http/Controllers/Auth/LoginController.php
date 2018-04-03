@@ -80,12 +80,12 @@ class LoginController extends Controller
             $redis->connect('127.0.0.1', 6379);
             $redis->auth('');
             //获取队列长度
-            if ($redis->lLen('active_user_list') > 10) {
+          /*  if ($redis->lLen('active_user_list') > 10) {
                 //删除 列表中多余数据
                 $redis->lTrim('active_user_list', 11, -1);
             }
 
-            $redis->lPush('active_user_list', json_encode($user->toArray(), JSON_UNESCAPED_UNICODE));
+            $redis->lPush('active_user_list', json_encode($user->toArray(), JSON_UNESCAPED_UNICODE));*/
 
             return $this->sendLoginResponse($request);
         }
