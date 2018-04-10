@@ -14,7 +14,6 @@
         "laravel/framework": "5.5.*",
         "laravel/passport": "^4.0",
         "laravel/tinker": "~1.0",
-        "latrell/alipay": "dev-master",
         "mews/captcha": "^2.1",
         "overtrue/laravel-pinyin": "~3.0",
         "overtrue/laravel-socialite": "~1.0",

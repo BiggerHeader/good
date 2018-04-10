@@ -7,7 +7,7 @@
 
 @section('main')
     <input type="hidden" id="TenantId" name="TenantId" value="" />
-    <div class="header"></div>
+    {{--<div class="header"></div>--}}
     <div class="loginWraper">
         <div id="loginform" class="loginBox">
 
@@ -20,6 +20,9 @@
 
             <form class="form form-horizontal" action="{{ url('admin/login') }}" method="post">
                 {{ csrf_field() }}
+                <div class="row" style="text-align: center;margin-top: 0px;">
+                    <label class="form-label col-xs-3">后台管理系统</label>
+                </div>
 
                 <div class="row cl {{ $errors->has('name') ? ' has-error' : '' }}">
                     <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>

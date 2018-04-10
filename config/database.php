@@ -52,6 +52,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'fetch'       => PDO::FETCH_ASSOC,
         ],
 
         'pgsql' => [
