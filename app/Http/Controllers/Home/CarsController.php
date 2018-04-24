@@ -20,7 +20,7 @@ class CarsController extends Controller
     {
         $cars = [];
         if ($this->guard()->check()) {
-            $cars = $this->guard()->user()->cars;
+           $cars = $this->guard()->user()->cars;
         }
 
         return view('home.cars.index', compact('cars'));

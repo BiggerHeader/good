@@ -28,7 +28,7 @@ class CategoryRequest extends FormRequest
             'name' => 'required|unique:categories',
             'thumb' => 'required',
             'parent_id' => Rule::notIn(['-1']),
-            'description' => 'required|min:10',
+            'description' => 'required',
         ];
 
         if ($this->method() == 'PUT') {

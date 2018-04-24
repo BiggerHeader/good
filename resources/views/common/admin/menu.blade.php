@@ -1,11 +1,11 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
         <dl id="menu-article">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 分类管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe616;</i> 栏目管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a data-href="{{ url('admin/categories') }}" data-title="分类列表"
-                           href="javascript:void(0)">分类列表</a></li>
+                           href="javascript:void(0)">栏目列表</a></li>
                     <li><a data-href="{{ url('admin/categories/create') }}" data-title="分类添加" href="javascript:void(0)">分类添加</a>
                     </li>
                 </ul>
@@ -42,14 +42,14 @@
             </dd>
         </dl>
         <dl id="menu-member">
-            <dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a data-href="{{ url('/admin/users') }}" data-title="会员列表" href="javascript:;">会员列表</a></li>
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-admin">
+       {{-- <dl id="menu-admin">
             <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
@@ -61,7 +61,7 @@
                     </li>
                 </ul>
             </dd>
-        </dl>
+        </dl>--}}
         <dl id="menu-comments">
             <dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
@@ -73,7 +73,7 @@
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-system">
+       {{-- <dl id="menu-system">
             <dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
@@ -84,7 +84,7 @@
                     <li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
                 </ul>
             </dd>
-        </dl>
+        </dl>--}}
     </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>

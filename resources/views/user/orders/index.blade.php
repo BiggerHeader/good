@@ -41,7 +41,8 @@
 
             <thead>
             <tr>
-                <th class="time">uuid</th>
+                <th class="time">ID</th>
+                <th class="time">订单号</th>
                 <th class="name">创建时间</th>
                 <th class="amount">金额</th>
             </tr>
@@ -50,10 +51,12 @@
             <tbody>
                 @foreach ($orders as $order)
                     <tr style="padding-left: 20px;">
+                        <td>
+                            {{$order->id}}
+                        </td>
                         <td class="time">
-                            <p>
+
                                 <a class="uuid" href="{{ url("/user/orders/{$order->id}") }}">{{ $order->uuid }}</a>
-                            </p>
                         </td>
                         <td class="title name">
                             <p class="content">

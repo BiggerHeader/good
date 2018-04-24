@@ -73,7 +73,7 @@
                                         class="tm-count">{{ $product->safe_count }}</span></div>
                         </li>
                         <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span>
+                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">{{$comment_count}}</span>
                             </div>
                         </li>
                     </ul>

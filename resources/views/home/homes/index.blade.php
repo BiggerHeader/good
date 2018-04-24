@@ -43,10 +43,6 @@
                                             </figure>
                                         </a>
                                         <div class="deal-about p-20 pos-a bottom-0 left-0">
-                                            <div class="mb-10">
-                                                收藏人数 <span
-                                                        class="rating-count rating">{{ $hotProduct['count'] }}</span>
-                                            </div>
                                             <h3 class="deal-title mb-10 ">
                                                 {{ $hotProduct['name'] }}
                                             </h3>
@@ -77,10 +73,10 @@
                                     </a>
                                     <div class="bg-white pt-20 pl-20 pr-15">
                                         <div class="pr-md-10">
-                                            <div class="mb-10">
+                                          {{--  <div class="mb-10">
                                                 收藏人数 <span
                                                         class="rating-count rating">{{ $latestProduct['count'] }}</span>
-                                            </div>
+                                            </div>--}}
                                             <h3 class="deal-title mb-10">
                                                 <a href="{{ url("/home/products/".$latestProduct['id']) }}">
                                                     {{ $latestProduct['name'] }}
@@ -119,7 +115,7 @@
                                     <div class="embed-responsive embed-responsive-4by3">
                                         <div class="store-logo">
                                             <img class="user-avatar"
-                                                 src="{{ $user['avatar']  }}"
+                                                 src="{{ asset('images/Scnu_logo.png')}}"
                                                  alt="{{ $user['name'] }}">
                                         </div>
                                     </div>

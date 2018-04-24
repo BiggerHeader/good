@@ -15,7 +15,8 @@
                                 <a href="{{ url("/home/categories/{$category->id}") }}" class="panel is-block">
                                     <div class="embed-responsive embed-responsive-4by3">
                                         <div class="store-logo">
-                                            <img src="{{ $categoryPresenter->getThumbLink($category->thumb) }}" alt="{{ $category->name }}">
+                                            {{--<img src="{{ $categoryPresenter->getThumbLink($category->thumb) }}" alt="{{ $category->name }}">--}}
+                                            <img src="{{asset('images/Scnu_logo.png')}}" alt="{{ $category->name }}">
                                         </div>
                                     </div>
                                     <h6 class="store-name ptb-10">{{ $category->name }}</h6>

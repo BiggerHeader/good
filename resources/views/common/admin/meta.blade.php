@@ -20,10 +20,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/static/h-ui.admin/css/style.css') }}"/>
 
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.css') }}"/>
-<link rel="stylesheet" href="{{asset('css/daterangepicker-bs3.css')}}">
 <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
-<link rel="stylesheet" href="{{asset('css/social-center.css')}}">
 <!--[if IE 6]>
 <script type="text/javascript" src="{{ asset('assets/admin/lib/DD_belatedPNG_0.0.8a-min.js') }}"></script>
 <script>DD_belatedPNG.fix('*');</script>

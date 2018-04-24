@@ -52,14 +52,14 @@ class CategoriesController extends Controller
 
             Category::find($data['parent_id'])->children()->create($data);
         }
-        $redis = new  \Redis();
+       /* $redis = new  \Redis();
         $redis->connect('127.0.0.1', 6379);
         $redis->auth('');
         $prefix = 'home:';
         $name = 'categories';
         if ($redis->exists($prefix . $name)) {
             $redis->del($prefix . $name);
-        }
+        }*/
         return back()->with('status', '创建分类成功');
     }
 
@@ -71,14 +71,14 @@ class CategoriesController extends Controller
     public function edit(Category $category)
     {
         $categories = $this->categoryService->getTransformCategories();
-        $redis = new  \Redis();
+       /* $redis = new  \Redis();
         $redis->connect('127.0.0.1', 6379);
         $redis->auth('');
         $prefix = 'home:';
         $name = 'categories';
         if ($redis->exists($prefix . $name)) {
             $redis->del($prefix . $name);
-        }
+        }*/
         return view('admin.categories.edit', compact('category', 'categories'));
     }
 
@@ -87,14 +87,14 @@ class CategoriesController extends Controller
         $data = $this->getRequestForm($request);
 
         if ($category->update($data)) {
-            $redis = new  \Redis();
+           /* $redis = new  \Redis();
             $redis->connect('127.0.0.1', 6379);
             $redis->auth('');
             $prefix = 'home:';
             $name = 'categories';
             if ($redis->exists($prefix . $name)) {
                 $redis->del($prefix . $name);
-            }
+            }*/
 
             return back()->with('status', '修改成功');
         } else {

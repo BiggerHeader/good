@@ -71,11 +71,17 @@
                             </label>
                         </div>
                     </div>
+                    <div class="am-form-group">
+                        <label for="user-youbian" class="am-form-label">邮编</label>
+                        <div class="am-form-content">
+                            <input id="user-youbian" name="youbian" placeholder="邮编" type="number" value="{{ $user->youbian }}">
+                        </div>
+                    </div>
 
                     <div class="am-form-group">
                         <label for="user-email" class="am-form-label">电子邮件</label>
                         <div class="am-form-content">
-                            <input id="user-email" placeholder="Email" type="email" value="{{ $user->email }}" disabled="disabled">
+                            <input id="user-email" placeholder="Email" type="email" name="email" value="{{ $user->email }}">
 
                         </div>
                     </div>

@@ -84,9 +84,9 @@ class OrdersController extends Controller
                 'order_id' => $res->id,
                 'product_id' => $key,
                 'numbers' => $item,
-                'user_id' => $user_id,
+                'user_id' => $user_id->id,
             ];
-            Product::where('id', $key)->increment(['safe_count' => $item]);
+            Product::where('id', $key)->increment('safe_count',  $item);
         }
         //提交数据
         if (!OrderDetail::insert($order_detail_data)) {
@@ -159,7 +159,7 @@ class OrdersController extends Controller
         if ($order->user_id != Auth::user()->id) {
             abort(404, '你没有权限');
         }
-        // dd($order->address->name);
+        // dd($order->orderDetails);
         return view('user.orders.show', compact('order'));
     }
 

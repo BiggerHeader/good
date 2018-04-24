@@ -12,7 +12,7 @@
                     <div class="row row-rl-10">
                         <div class="col-sm-3 col-md-2 t-center">
                             <figure class="pt-20 pl-10">
-                                <img src="{{ $categoryPresenter->getThumbLink($category->thumb) }}" alt="{{ $category->name }}">
+                                <img src="{{asset('/images/Scnu_logo.png')}}" alt="{{ $category->name }}">
                             </figure>
                         </div>
 
@@ -22,7 +22,6 @@
                                 <p class="mb-15">
                                     {{ $category->description }}
                                 </p>
-                                <button class="btn btn-info">好看</button>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -71,10 +70,11 @@
                                     <div class="row row-rl-0 row-sm-cell">
                                         <div class="col-sm-5">
                                             <a href="{{ url("/home/products/{$product->id}") }}">
-                                                <figure class="deal-thumbnail embed-responsive embed-responsive-16by9 col-absolute-cell" data-bg-img="{{ $productPresenter->getThumbLink($product->thumb) }}">
+                                                <figure class="deal-thumbnail embed-responsive embed-responsive-16by9 col-absolute-cell"
+                                                        data-bg-img="{{ $productPresenter->getThumbLink($product->thumb) }}">
                                                     <div class="label-discount left-20 top-15">-50%</div>
                                                     <ul class="deal-actions top-15 right-20">
-                                                        <li  class="like-deal" data-id="{{ $product->id }}">
+                                                        <li class="like-deal" data-id="{{ $product->id }}">
                                                             <span>
                                                                 <i class="fa fa-heart"></i>
                                                             </span>
@@ -87,9 +87,10 @@
                                             <div class="bg-white pt-20 pl-20 pr-15">
                                                 <div class="pr-md-10">
                                                     <div class="rating mb-10">
-                                                        <div class="mb-10">
-                                                            收藏人数 <span class="rating-count rating">{{ $product->users->count() }}</span>
-                                                        </div>
+                                                      {{--  <div class="mb-10">
+                                                            收藏人数 <span
+                                                                    class="rating-count rating">{{ $product->users->count() }}</span>
+                                                        </div>--}}
                                                     </div>
                                                     <h3 class="deal-title mb-10">
                                                         <a href="{{ url("/home/products/{$product->id}") }}">
@@ -134,7 +135,7 @@
 
 @section('script')
     <script>
-        $('.like-deal').click(function(){
+        $('.like-deal').click(function () {
             var id = $(this).data('id');
 
             alert('收藏商品ID ' + id);
@@ -143,14 +144,14 @@
             return false;
         });
 
-        $('.like-deal').hover(function(){
+        $('.like-deal').hover(function () {
             $(this).find('i').css('color', 'red');
-        }, function(){
+        }, function () {
             $(this).find('i').css('color', '#fff');
         });
     </script>
     <script>
-        $('#order-select').change(function(){
+        $('#order-select').change(function () {
             $('#order-form').submit();
         });
     </script>

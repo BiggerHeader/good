@@ -24,7 +24,7 @@ on p.category_id = c.id
         $hotProducts = DB::select('select count,name,id,price,thumb,title,price_original 
 from products a LEFT JOIN  (SELECT  count(*) as count,product_id  
 FROM  likes_products  GROUP BY product_id )b  
-on a.id=b.product_id order  by  safe_count desc limit 9');
+on a.id=b.product_id where a.is_alive=1 order  by  safe_count desc limit 9  ');
         $hotProducts = array_map(function ($item) {
             return (array)$item;
         }, $hotProducts);
@@ -32,7 +32,7 @@ on a.id=b.product_id order  by  safe_count desc limit 9');
         $latestProducts = DB::select('select count,name,id,price,thumb,title,price_original 
 from products a LEFT JOIN  (SELECT  count(*) as count,product_id  
 FROM  likes_products  GROUP BY product_id )b  
-on a.id=b.product_id order  by  created_at desc limit 9');
+on a.id=b.product_id where a.is_alive=1 order  by  created_at desc limit 9 ');
         $latestProducts = array_map(function ($item) {
             return (array)$item;
         }, $latestProducts);

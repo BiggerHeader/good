@@ -7,6 +7,7 @@ use App\Models\Product;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
@@ -55,7 +56,9 @@ class ProductsController extends Controller
         if (!empty($user)) {
             $is_buy = OrderDetail::where(['user_id' => $user->id, 'product_id' => $product->id])->count();
         }
-        return view('home.products.show', compact('product', 'recommendProducts', 'is_buy'));
+        $comment_count = DB::table('comment')->where('product_id','=',$product->id)->count();
+
+        return view('home.products.show', compact('product', 'recommendProducts', 'is_buy','comment_count'));
     }
 
     protected function guard()

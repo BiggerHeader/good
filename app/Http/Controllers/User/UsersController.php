@@ -22,14 +22,11 @@ class UsersController extends Controller
     }
 
 
-
     public function setting()
     {
         $user = Auth::user();
-
         return view('user.users.setting', compact('user'));
     }
-
 
 
     public function update(Request $request)
@@ -37,16 +34,21 @@ class UsersController extends Controller
         $this->validate($request, [
             'avatar' => 'required',
             'sex' => 'in:0,1',
-            'name' => 'required:unique:users'
+            'name' => 'required:unique:users',
+            'youbian' => 'required:number',
+            'email' => 'required:email'
         ], [
-           'avatar.required' => '头像不能为空',
-           'sex.in' => '性别格式不对',
-           'name.required' => '用户名不能为空',
-           'name.unique' => '用户名已经存在',
+            'avatar.required' => '头像不能为空',
+            'sex.in' => '性别格式不对',
+            'name.required' => '用户名不能为空',
+            'name.unique' => '用户名已经存在',
+            'youbian.required' => '邮编必填',
+            'youbian.number' => '邮编必须位数字',
+            'email.required' => '邮箱必填',
+            'email.email' => '邮箱格式不正确'
         ]);
 
-
-        $this->guard()->user()->update($request->only(['avatar', 'name', 'sex']));
+        $this->guard()->user()->update($request->only(['avatar', 'name', 'sex','youbian','email']));
 
         return back()->with('status', '修改成功');
     }
@@ -89,7 +91,7 @@ class UsersController extends Controller
 
     public function uploadAvatar(Request $request)
     {
-        if (! $request->hasFile('file')) {
+        if (!$request->hasFile('file')) {
             return [
                 'code' => 302,
                 'msg' => '没选择图片',
@@ -98,7 +100,7 @@ class UsersController extends Controller
         }
 
         // move file to public
-        if (! $link = $request->file('file')->store(config('web.upload.avatar'), 'public')) {
+        if (!$link = $request->file('file')->store(config('web.upload.avatar'), 'public')) {
             return [
                 'code' => 402,
                 'msg' => '服务器异常，请稍后再试',
@@ -132,7 +134,7 @@ class UsersController extends Controller
             'password.confirmed' => '两次密码不一致',
         ]);
 
-        if (! $this->validatePassword($request->input('old_password'))) {
+        if (!$this->validatePassword($request->input('old_password'))) {
             return back()->withErrors(['old_password' => '旧密码不正确']);
         }
 

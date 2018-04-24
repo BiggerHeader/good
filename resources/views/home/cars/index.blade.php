@@ -16,38 +16,47 @@
                                         <thead class="panel t-uppercase">
                                         <tr>
                                             <th>商品名字</th>
+                                            <th>原单价</th>
                                             <th>单价</th>
                                             <th>数量</th>
                                             <th>金额</th>
+                                            <th>优惠</th>
                                             <th>删除</th>
                                         </tr>
                                         </thead>
                                         <tbody id="cars_data">
                                         @inject('productPresenter', 'App\Presenters\ProductPresenter')
                                         @foreach ($cars as $car)
-                                            <tr class="panel alert">
-                                                <td>
-                                                    <div class="media-body valign-middle">
-                                                        <h6 class="title mb-15 t-uppercase">
-                                                            <input type="checkbox" name="product_id[]"
-                                                                   value="{{$car->product->id}}">
-                                                            <a href="{{ url("/home/products/{$car->product->id}") }}">
-                                                                {{ $car->product->name }}
-                                                            </a>
-                                                        </h6>
-                                                    </div>
+                                            <tr class="panel">
+                                                <td style="width: 100px;">
+                                                    <input type="checkbox" name="product_id[]"
+                                                           value="{{$car->product->id}}">
+                                                    <a href="{{ url("/home/products/{$car->product->id}") }}">
+                                                        {{ $car->product->name }}
+                                                    </a>
                                                 </td>
+                                                <td class="price_original">{{ $car->product->price_original }}</td>
                                                 <td class="prices">{{ $car->product->price }}</td>
                                                 <td>
                                                     <button type="button" class="reduce">-</button>
-                                                    <input class="quantity-label count" type="number" name="productid_number[{{$car->product->id}}]"
+                                                    <input class="quantity-label count" type="number"
+                                                           name="productid_number[{{$car->product->id}}]"
                                                            value="{{ $car->numbers }}" style="width: 20px" readonly>
                                                     <button type="button" class="add">+</button>
                                                 </td>
                                                 <td>
-                                                    <label style="color:red;">¥<input
+                                                    <label style="color:#ff030f;"><span
+                                                                style="align-content: center;">¥</span><input
                                                                 class="quantity-label single_total" type="number"
+                                                                readonly
                                                                 value="{{ $car->numbers * $car->product->price }}"></label>
+                                                </td>
+                                                <td>
+                                                    <label style="color:#204dff;"><span
+                                                                style="align-content: center;">¥</span><input
+                                                                class="quantity-label youhui_money" type="number"
+                                                                readonly
+                                                                value="{{ ($car->numbers*$car->product->price_original)-($car->numbers * $car->product->price) }}"></label>
                                                 </td>
                                                 <td>
                                                     <button data-id="{{ $car->id }}" class="close delete_car"
@@ -186,21 +195,26 @@
             var parent = $(this).parents('.panel');
             var value = parent.find('.count');
             var prices = parent.find('.prices').text();
+            var price_original = parent.find('.price_original').text();
+            var youhui_money = $('.youhui_money')
             var singleTotal = parent.find('.single_total');
             value.val(value.val() * 1 + 1);
             singleTotal.val(value.val() * prices);
+            youhui_money.val(value.val() * price_original-value.val() * prices);
             getTotal();
         })
         reduce.on('click', function () {
             var parent = $(this).parents('.panel');
             var value = parent.find('.count');
             var prices = parent.find('.prices').text();
+            var price_original = parent.find('.price_original').text();
             var singleTotal = parent.find('.single_total');
             if (value.val() <= 1) {
                 value.val(1);
             } else {
                 value.val(value.val() * 1 - 1);
             }
+            $('.youhui_money').val(value.val() * price_original-value.val() * prices);
             singleTotal.val(value.val() * prices);
             getTotal();
         })
@@ -212,7 +226,7 @@
             }
             getTotal();
         })
-        $('.pull-left input').on('change', function() {
+        $('.pull-left input').on('change', function () {
             var value = $(this).prop('checked');
             $('#cars_data .panel input[type="checkbox"]').prop('checked', value);
             getTotal();

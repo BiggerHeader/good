@@ -18,22 +18,19 @@
                                             <div class="am-fl am-cf"><strong
                                                         class="am-text-danger am-text-lg">地址管理</strong>
                                                 /
-                                                <small>Address&nbsp;list</small>
+                                                <small>地址列表</small>
                                             </div>
                                         </div>
                                         <hr/>
                                         <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
                                             @foreach ($addresses as $item)
-                                                <li class="user-addresslist {{ $item['is_default'] ? 'defaultAddr' : '' }}">
-                                                    <label class="radio-inline" style="left: 205px">
-                                                        <input type="radio" value="{{$item['id']}}"
-                                                               name="address_id" {{ $item['is_default'] ? 'checked' : '' }} >
-                                                        <input type="hidden" name="id" value="{{$data['id']}}">
-                                                    </label>
-
+                                                <li>
+                                                    <input type="hidden" name="id" value="{{$data['id']}}">
                                                     <p class="new-tit new-p-re">
                                                         <span class="new-txt">{{ $item['name'] }}</span>
                                                         <span class="new-txt-rd2">{{ $item['phone'] }}</span>
+                                                        <input type="radio" value="{{$item['id']}}"
+                                                               name="address_id" {{ $item['is_default'] ? 'checked' : '' }} >
                                                     </p>
                                                     <div class="new-mu_l2a new-p-re">
                                                         <p class="new-mu_l2cw">
