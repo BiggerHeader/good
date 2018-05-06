@@ -56,7 +56,7 @@
         </div>
         <div class="row cl {{ ($errors->has('attribute.*') || $errors->has('items.*') || $errors->has('markup.*')) ? 'has-error' : '' }}" id="attrContainer">
             <div class="attr_container">
-                <label class="form-label col-xs-4 col-sm-2">添加产品属性：</label>
+              {{--  <label class="form-label col-xs-4 col-sm-2">添加产品属性：</label>
                 <div class="formControls col-xs-8 col-sm-9">
                     <button type="button" class="layui-btn" id="addAttrBtn">添加产品属性</button>
                     @if ($errors->has('attribute.*'))
@@ -87,7 +87,7 @@
                         <input type="text" name="markup[]" id="" placeholder="浮动价格，如白色的比较贵10￥" value="{{ $attribute->markup }}" class="input-text" style=" width:25%" required>
                     </div>
                 </div>
-            @endforeach
+            @endforeach--}}
         </div>
 
         <div class="row cl {{ $errors->has('price') ? 'has-error' : '' }}">
@@ -179,8 +179,7 @@
                         <div class="layui-upload-list">
                             <table class="layui-table">
                                 <thead>
-                                <tr><th>文件名</th>
-                                    <th>大小</th>
+                                <tr>
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr></thead>
@@ -188,8 +187,6 @@
                                     @if ($product->productImages)
                                         @foreach ($product->productImages as $key => $value)
                                             <tr>
-                                                <td>未知</td>
-                                                <td>未知</td>
                                                 <td><span style="color: #5FB878;">上传成功</span></td>
                                                 <td>
                                                     <img src="/storage/{{ $value->link }}" />

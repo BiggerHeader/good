@@ -63,10 +63,14 @@ class OrdersController extends Controller
         //  需要修改 ？？？？？ 不能相信客户端数据
         //获取所有 商品数据
         $product_data = Product::whereIn('id', array_keys($productid_number))->get();
-        $order_data['total_money'] = $this->getTotal($product_data, $productid_number);
+        // [$total_money,$change_money];
+        $money_all=$this->getTotal($product_data, $productid_number);
+        $order_data['total_money'] =$money_all[0] ;
+
         $order_data['user_id'] = $request->user()->id;
         $order_data['uuid'] = $this->generateUuid();
         $order_data['status'] = 0;
+        $order_data['change_money']=$money_all[1];
         $order_data['created_at'] = date('Y-m-d H:i:s');
         $order_data['updated_at'] = date('Y-m-d H:i:s');
         //var_dump($order_data);exit();
@@ -159,8 +163,20 @@ class OrdersController extends Controller
         if ($order->user_id != Auth::user()->id) {
             abort(404, '你没有权限');
         }
-        // dd($order->orderDetails);
-        return view('user.orders.show', compact('order'));
+        $address= json_decode(json_encode(DB::table("mbl_region")->select('id','name')->whereIn('id', [
+            $order->address->province,
+            $order->address->city,
+            $order->address->area,
+            ])->get()),true);
+        /*
+         * PHP  转二维数组 为一维数组 一个位键 一个为值
+         * */
+        $address_Array = array_reduce($address,function(&$address_Array,$v){
+            $address_Array[$v['id']] = $v['name'];
+            return $address_Array;
+        });
+        //var_dump($address_Array);exit();
+        return view('user.orders.show', compact('order','address_Array'));
     }
 
     private function generateUuid()
@@ -172,13 +188,14 @@ class OrdersController extends Controller
 
     private function getTotal($product_data, $productid_number)
     {
-        $total = 0;
-
+        $total_money = 0;
+        $change_money=0;
         foreach ($product_data as $product_datum) {
-            $total += $productid_number[$product_datum->id] * $product_datum->price;
+            $total_money += $productid_number[$product_datum->id] * $product_datum->price;
+            $change_money +=$productid_number[$product_datum->id] * $product_datum->price_original;
         }
 
-        return $total;
+        return [$total_money,$change_money];
     }
 
     private function formatSingleData($request)

@@ -16,7 +16,7 @@
                                         <thead class="panel t-uppercase">
                                         <tr>
                                             <th>商品名字</th>
-                                            <th>原单价</th>
+                                            <th>原价</th>
                                             <th>单价</th>
                                             <th>数量</th>
                                             <th>金额</th>
@@ -72,54 +72,6 @@
                                         <!-- Checkout Area -->
                                         <section class="section checkout-area panel prl-30 pt-20 pb-40">
                                             <h2 class="h3 mb-20 h-title">订单信息</h2>
-                                            {{--@if (session()->has('status'))
-                                                <div class="alert alert-success alert-dismissible" role="alert">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    {{ session('status') }}
-                                                </div>
-                                            @endif--}}
-
-
-                                            {{-- <form class="mb-30" method="post" action="{{ url('/user/orders/') }}">
-                                                 {{ csrf_field() }}
-
-                                                 <div class="row">
-
-                                                     @if ($errors->has('address_id'))
-                                                         <div class="alert alert-danger" role="alert">
-                                                             <button type="button" class="close" data-dismiss="alert"
-                                                                     aria-label="Close"><span
-                                                                         aria-hidden="true">&times;</span></button>
-                                                             {{ $errors->first('address_id') }}
-                                                         </div>
-                                                     @endif
-                                                     <div class="col-md-4">
-                                                         <div class="form-group">
-                                                             <label>选择收货地址</label>
-                                                             <select class="form-control" name="address_id">
-                                                                 <option value="">请选择收货地址</option>
-                                                                 @if (Auth::check())
-                                                                     @foreach (Auth::user()->addresses as $address)
-                                                                         <option value="{{ $address->id }}">{{ $address->name }}
-                                                                             /{{ $address->phone }}</option>
-                                                                     @endforeach
-                                                                 @endif
-                                                             </select>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-
-                                                 @auth
-                                                     <button type="submit" class="btn btn-lg btn-rounded mr-10">下单</button>
-                                                 @endauth
-                                                 @guest
-                                                     <a href="{{ url('login') }}?redirect_url={{ url()->current() }}"
-                                                        class="btn btn-lg btn-rounded mr-10">下单</a>
-                                                 @endguest
-                                             </form>--}}
-
                                             <div class="row">
                                                 <div class="checkbox pull-left">
                                                     <label>

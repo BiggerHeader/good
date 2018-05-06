@@ -18,7 +18,7 @@
         <table id="demo" class="layui-table" lay-filter="demo"></table>
         <script type="text/html" id="order_status">
             <input type="checkbox" order_id="@{{ d.id }}" uuid="@{{ d.uuid }}" name="status" value="@{{d.status}}"
-                   lay-skin="switch" lay-text="已发货|未发货" lay-filter="status" @{{ d.status =='1'  ? 'checked' : '' }}>
+                   lay-skin="switch" lay-text="已发货|未发货" lay-filter="status" @{{ d.status =='1' ||d.status =='2'  ? 'checked' : '' }}>
         </script>
         <script type="text/html" id="checkboxTpl">
             <input type="checkbox" name="lock"  uuid="@{{ d.uuid }}"  value="@{{d.id}}" title="订单置无效" lay-filter="lockDemo" @{{ d.status == '3' ? 'checked' : '' }}>
@@ -45,8 +45,8 @@
                 },
                 cols: [[ //表头
                     {field: 'uuid', title: '订单ID'},
-                    {field: 'total_money', title: '原总金额'},
-                    {field: 'change_money', title: '改动金额(可直接编辑)',edit: 'text'},
+                    {field: 'total_money', title: '现价'},
+                    {field: 'change_money', title: '原价'},
                     {field: 'created_at', title: '创建时间', sort: true},
                     {field: 'detail_address', title: '详细地址'},
                     {field: 'status', title: '订单状态', templet: '#order_status',width:100},

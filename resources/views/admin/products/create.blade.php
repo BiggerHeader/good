@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="row cl {{ ($errors->has('attribute.*') || $errors->has('items.*') || $errors->has('markup.*')) ? 'has-error' : '' }}" id="attrContainer">
-            <div class="attr_container">
+            {{--<div class="attr_container">
                 <label class="form-label col-xs-4 col-sm-2">添加产品属性：</label>
                 <div class="formControls col-xs-8 col-sm-9">
                     <button type="button" class="layui-btn" id="addAttrBtn">添加产品属性</button>
@@ -84,11 +84,11 @@
                     ===&gt;
                     <input type="text" name="markup[]" id="" placeholder="浮动价格，如白色的比较贵10￥" value="{{ old('markup.0') }}" class="input-text" style=" width:25%" required>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="row cl {{ $errors->has('price') ? 'has-error' : '' }}">
-            <label class="form-label col-xs-4 col-sm-2">销售价格：</label>
+            <label class="form-label col-xs-4 col-sm-2">现价格：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" name="price" id="" placeholder="" value="{{ old('price') }}" class="input-text" style="width:90%" required>
                 元
@@ -101,7 +101,7 @@
         </div>
 
         <div class="row cl {{ $errors->has('price_original') ? 'has-error' : '' }}">
-            <label class="form-label col-xs-4 col-sm-2">商品展示价格：</label>
+            <label class="form-label col-xs-4 col-sm-2">原价格：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" name="price_original" id="" placeholder="" value="{{ old('price_original') }}" class="input-text" style="width:90%" required>
                 元
@@ -174,8 +174,7 @@
                         <div class="layui-upload-list">
                             <table class="layui-table">
                                 <thead>
-                                <tr><th>文件名</th>
-                                    <th>大小</th>
+                                <tr>
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr></thead>
@@ -183,8 +182,6 @@
                                     @if (old('link'))
                                         @foreach (old('link') as $key => $value)
                                             <tr>
-                                                <td>未知</td>
-                                                <td>未知</td>
                                                 <td><span style="color: #5FB878;">上传成功</span></td>
                                                 <td>
                                                     <img src="/storage/{{ $value }}" />

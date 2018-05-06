@@ -113,18 +113,6 @@
                                         </div>
                                     @endif
                                 </div>
-
-
-                                <div class="custom-checkbox mb-20">
-                                    <input type="checkbox" id="agree_terms">
-                                    <label class="color-mid" for="agree_terms">
-                                        我同意
-                                        <a href="#" class="color-green" target="_blank">MyShop隐私声明</a>
-                                    </label>
-                                    <span class="has-error">
-                                        <strong id="checkbox_text" class="help-block"></strong>
-                                    </span>
-                                </div>
                                 <button type="submit" class="btn btn-block btn-lg">注 册</button>
                             </form>
                             <span class="or">Or</span>
@@ -132,19 +120,9 @@
                         <div class="col-sm-6 col-md-5 col-right">
                             <div class="social-login p-40">
                                 <div class="mb-20">
-                                    <a href="{{ url('/auth/github') }}"
-                                       class="btn btn-lg btn-block btn-social btn-facebook"><i
-                                                class="fa  fa-github"></i>登录 Github</a>
+                                    <img src="{{asset("images/Scnu_logo.png")}}">
                                 </div>
-                                <div class="mb-20">
-                                    <a href="{{ url('/auth/qq') }}" class="btn btn-lg btn-block btn-social btn-twitter"><i
-                                                class="fa fa-qq"></i>登录 QQ</a>
-                                </div>
-                                <div class="mb-20">
-                                    <a href="{{ url('/auth/weibo') }}"
-                                       class="btn btn-lg btn-block btn-social btn-google-plus"><i
-                                                class="fa fa-weibo"></i>登录 微博</a>
-                                </div>
+
                                 <div class="text-center color-mid">
                                     已经有账号 ? <a href="{{ route('login') }}" class="color-green">登录</a>
                                 </div>
@@ -200,7 +178,7 @@
         });
 
 
-        $('#register_form').submit(function () {
+    /*    $('#register_form').submit(function () {
 
             if (!$('#agree_terms').is(':checked')) {
                 $('#checkbox_text').text('请同意MondayShop隐私声明');
@@ -213,6 +191,6 @@
             }
 
             return true;
-        });
+        });*/
     </script>
 @endsection

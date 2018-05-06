@@ -73,7 +73,8 @@
                                         class="tm-count">{{ $product->safe_count }}</span></div>
                         </li>
                         <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">{{$comment_count}}</span>
+                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span
+                                        class="tm-count">{{$comment_count}}</span>
                             </div>
                         </li>
                     </ul>
@@ -98,20 +99,8 @@
                                     <form class="theme-signin" name="" action="" method="post">
 
                                         <div class="theme-signin-left">
-                                            @foreach ($product->productAttributes()->get()->groupBy('attribute')->toArray() as $item => $attrs)
-                                                <div class="theme-options">
-                                                    <div class="cart-title">{{ $item }}</div>
-                                                    <ul>
-                                                        @foreach ($attrs as $key => $attr)
-                                                            <li title="价格浮动 {{ $attr['markup'] }}"
-                                                                class="sku-line {{ $key == 0 ? 'selected' : '' }}">{{ $attr['items'] }}
-                                                                <i></i></li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endforeach
-                                            <div class="theme-options">
-                                                <div class="cart-title number">数量</div>
+
+                                            <div class="cart-title number">数量</div>
                         <dd>
                             <input id="min" class="am-btn am-btn-default" type="button" value="-"/>
                             <input id="text_box" name="numbers" type="text" value="1" style="width:30px;"/>
@@ -121,51 +110,35 @@
                         </dd>
 
                     </dl>
-                    <div class="pay">
-                        <div class="pay-opt">
-                            <a href="{{ url('/') }}"><span class="am-icon-home am-icon-fw">首页</span></a>
-                            @auth
-                            @if ($product->users()->where('user_id', \Auth::user()->id)->count() > 0)
-                                <a href="javascript:;" style="display: none" id="likes_btn"><span
-                                            class="am-icon-heart am-icon-fw">收藏</span></a>
-                                <a href="javascript:;" id="de_likes_btn"><span
-                                            class="am-icon-heart am-icon-fw">取消收藏</span></a>
-                            @else
-                                <a href="javascript:;" id="likes_btn"><span
-                                            class="am-icon-heart am-icon-fw">收藏</span></a>
-                                <a href="javascript:;" style="display: none" id="de_likes_btn"><span
-                                            class="am-icon-heart am-icon-fw">取消收藏</span></a>
-                            @endif
-                            @endauth
+                </div>
+                <div class="pay">
+                    <div class="pay-opt">
+                        <a href="{{ url('/') }}"><span class="am-icon-home am-icon-fw">首页</span></a>
 
+                    </div>
+                    <li>
+                        <div class="clearfix tb-btn" id="nowBug">
+                            @auth
+                            <a href="javascript:;">立即购买</a>
+                            @endauth
                             @guest
-                            <a href="javascript:;" id="likes_btn"><span class="am-icon-heart am-icon-fw">收藏</span></a>
+                            <a href="{{ url('login') }}?redirect_url={{ url()->current() }}">立即购买</a>
                             @endguest
 
                         </div>
-                        <li>
-                            <div class="clearfix tb-btn" id="nowBug">
-                                @auth
-                                <a href="javascript:;">立即购买</a>
-                                @endauth
-                                @guest
-                                <a href="{{ url('login') }}?redirect_url={{ url()->current() }}">立即购买</a>
-                                @endguest
-
-                            </div>
-                        </li>
-                        <li>
-                            <div class="clearfix tb-btn tb-btn-basket">
-                                <a title="加入购物车" href="javascript:;" id="addCar"><i></i>加入购物车</a>
-                            </div>
-                        </li>
-                    </div>
+                    </li>
+                    <li>
+                        <div class="clearfix tb-btn tb-btn-basket">
+                            <a title="加入购物车" href="javascript:;" id="addCar"><i></i>加入购物车</a>
+                        </div>
+                    </li>
                 </div>
-                <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-        <!--活动	-->
+    </div>
+    <div class="clear"></div>
+    <!--活动	-->
     </div>
     <input type="hidden" name="product_id" value="{{ $product->id }}">
     <div class="clear"></div>
@@ -278,40 +251,40 @@
                         <div class="clear"></div>
 
                         <ul id="comments" class="am-comments-list am-comments-list-flip">
-                          {{--  <li class="am-comment">
-                                <!-- 评论容器 -->
-                                <a href="">
-                                    <img class="am-comment-avatar" src="{{asset('assets/user/images/hwbn40x40.jpg')}}"/>
-                                    <!-- 评论者头像 -->
-                                </a>
+                            {{--  <li class="am-comment">
+                                  <!-- 评论容器 -->
+                                  <a href="">
+                                      <img class="am-comment-avatar" src="{{asset('assets/user/images/hwbn40x40.jpg')}}"/>
+                                      <!-- 评论者头像 -->
+                                  </a>
 
-                                <div class="am-comment-main">
-                                    <!-- 评论内容容器 -->
-                                    <header class="am-comment-hd">
-                                        <!--<h3 class="am-comment-title">评论标题</h3>-->
-                                        <div class="am-comment-meta">
-                                            <!-- 评论元数据 -->
-                                            <a href="#link-to-user" class="am-comment-author">b***1 (匿名)</a>
-                                            <!-- 评论者 -->
-                                            评论于
-                                            <time datetime="">2015年11月02日 17:46</time>
-                                        </div>
-                                    </header>
+                                  <div class="am-comment-main">
+                                      <!-- 评论内容容器 -->
+                                      <header class="am-comment-hd">
+                                          <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                          <div class="am-comment-meta">
+                                              <!-- 评论元数据 -->
+                                              <a href="#link-to-user" class="am-comment-author">b***1 (匿名)</a>
+                                              <!-- 评论者 -->
+                                              评论于
+                                              <time datetime="">2015年11月02日 17:46</time>
+                                          </div>
+                                      </header>
 
-                                    <div class="am-comment-bd">
-                                        <div class="tb-rev-item " data-id="255776406962">
-                                            <div class="J_TbcRate_ReviewContent tb-tbcr-content ">
-                                                摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！
-                                            </div>
-                                            <div class="tb-r-act-bar">
-                                                颜色分类：柠檬黄&nbsp;&nbsp;尺码：S
-                                            </div>
-                                        </div>
+                                      <div class="am-comment-bd">
+                                          <div class="tb-rev-item " data-id="255776406962">
+                                              <div class="J_TbcRate_ReviewContent tb-tbcr-content ">
+                                                  摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！
+                                              </div>
+                                              <div class="tb-r-act-bar">
+                                                  颜色分类：柠檬黄&nbsp;&nbsp;尺码：S
+                                              </div>
+                                          </div>
 
-                                    </div>
-                                    <!-- 评论内容 -->
-                                </div>
-                            </li>--}}
+                                      </div>
+                                      <!-- 评论内容 -->
+                                  </div>
+                              </li>--}}
                         </ul>
 
                         <div class="clear"></div>
@@ -408,9 +381,10 @@
                         }
                         paginationHtml += `<li><a href="javascript:;">&raquo;</a></li>`;
                         $('.am-pagination').html(paginationHtml);
-                        for (let i = 0; i < respones.list.length; i++) {
-                            var item = respones.list[i]
-                            str += `
+                        if (respones.data.length > 0) {
+                            for (let i = 0; i < respones.data.length; i++) {
+                                var item = respones.data[i]
+                                str += `
                                 <li class="am-comment">
                                 <a href="">
                                 <img class="am-comment-avatar" src="http://biyesheji.com/assets/user/images/hwbn40x40.jpg">
@@ -434,6 +408,7 @@
                                 </div>
                                 </li>
                             `;
+                            }
                         }
                         console.log(str);
                         $('.am-comments-list').html(str);
@@ -449,14 +424,17 @@
                 comment.user_id = "{{ Auth::guard()->user()->id}}";
             @endif
                 comment.product_id = product_id;
+
             if (comment.content.length > 5) {
-                $.ajax({
+
+             $.ajax({
                     url: "http://yaf.dtcode.cn/comment/comment/add",
                     data: JSON.stringify(comment),
                     type: 'post',
                     dataType: "json",
-                    //contentType: 'application/json;charset=utf-8',
+
                     success: function (respones) {
+                        console.log(22);
                         if (respones.code == 10000) {
                             layer.msg(respones.msg);
                         } else {
@@ -555,9 +533,9 @@
             };
             console.log(data);
             $.post('{{ url('user/orders/single') }}', data, function (res) {
-                if(res.code == 200){
-                    window.location.href=res.msg;
-                }else {
+                if (res.code == 200) {
+                    window.location.href = res.msg;
+                } else {
                     layer.msg('系统繁忙，稍后再试！');
                 }
             });

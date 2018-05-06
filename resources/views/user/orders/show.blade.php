@@ -54,18 +54,6 @@
                                    </i>
                                    <p class="stage-name">确认收货</p>
                                 </span>
-                    <span class="step-4 step">
-                                   <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">4
-                                       @if($order->status>=3)
-                                           <em class="bg"
-                                               style="background-image: url({{asset('assets/user/images/sprite.png')}});background-position: -103px -135px;width: 19px;height: 19px;"></em>
-                                       @else
-                                           <em class="bg"></em>
-                                       @endif
-                                   </i>
-                                   <p class="stage-name">交易完成</p>
-                                </span>
                     <span class="u-progress-placeholder"></span>
                 </div>
                 <div class="u-progress-bar total-steps-2">
@@ -101,9 +89,9 @@
                         <div class="new-mu_l2a new-p-re">
                             <p class="new-mu_l2cw">
                                 <span class="title">收货地址：</span>
-                                <span class="province">{{ $order->address->province }}</span>省
-                                <span class="city">{{ $order->address->city }}</span>市
-                                <span class="dist">{{ $order->address->area }}</span>区
+                                <span class="province">{{ $address_Array[$order->address->province] }}</span>省
+                                <span class="city">{{ $address_Array[$order->address->city] }}</span>市
+                                <span class="dist">{{$address_Array[ $order->address->area] }}</span>区
                                 <span class="street">{{ $order->address->detail_address }}</span></p>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ namespace App\Models;
 class Order extends Model
 {
     protected $table = 'orders';
-    protected $fillable = ['uuid', 'total_money', 'status','address_id', 'user_id'];
+    protected $fillable = ['uuid', 'total_money', 'status','address_id', 'user_id','change_money'];
 
 
     public function orderDetails()

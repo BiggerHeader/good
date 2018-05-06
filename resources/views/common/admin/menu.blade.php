@@ -1,11 +1,11 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
         <dl id="menu-article">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 栏目管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe616;</i> 分类管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a data-href="{{ url('admin/categories') }}" data-title="分类列表"
-                           href="javascript:void(0)">栏目列表</a></li>
+                           href="javascript:void(0)">分类列表</a></li>
                     <li><a data-href="{{ url('admin/categories/create') }}" data-title="分类添加" href="javascript:void(0)">分类添加</a>
                     </li>
                 </ul>
@@ -32,7 +32,7 @@
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-picture">
+      {{--  <dl id="menu-picture">
             <dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
@@ -40,12 +40,12 @@
                     </li>
                 </ul>
             </dd>
-        </dl>
+        </dl>--}}
         <dl id="menu-member">
-            <dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe60d;</i>用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="{{ url('/admin/users') }}" data-title="会员列表" href="javascript:;">会员列表</a></li>
+                    <li><a data-href="{{ url('/admin/users') }}" data-title="会员列表" href="javascript:;">用户列表</a></li>
                 </ul>
             </dd>
         </dl>

@@ -13,10 +13,10 @@
             <div class="row cl  {{ $errors->has('parent_id') ? ' has-error' : '' }}">
                 <label class="form-label col-xs-4 col-sm-2">
                     <span class="c-red">*</span>
-                    父级分类：</label>
+                    栏目分类：</label>
                 <div class="formControls col-xs-6 col-sm-6">
                     <select name="parent_id" class="select" style="padding-bottom: 5px">
-                        <option value="-1">请选择父级分类</option>
+                        <option value="-1">请选择分类</option>
                         <option value="0">添加一级分类</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : ''}}>{!! $category->className !!}</option>

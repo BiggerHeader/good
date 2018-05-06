@@ -11,7 +11,7 @@
         <div class="page-container">
             <table id="demo" class="layui-table" lay-filter="demo"></table>
             <script type="text/html" id="barDemo" lay-filter="laytpl">
-                <a class="layui-btn layui-btn-xs" lay-event="status" title="上架"><i
+                <a class="layui-btn layui-btn-xs" lay-event="status" ><i
                             class="Hui-iconfont">&#xe63c;</i></a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit" title="编辑" href="/admin/products/@{{ d.id }}/edit"><i
                             class="Hui-iconfont">&#xe6df;</i></a>
@@ -27,13 +27,6 @@
                 <span class="label label-success radius product_status">上架</span>
                 @{{# }else{ }}
                 <span class="label label-success radius product_status">下架</span>
-                @{{# } }}
-
-                @{{# if(d.is_hot === '0'){ }}
-                <span class="label label-info radius product_status">正常</span>
-                @{{# }else{ }}
-                <span class="label label-info radius product_status">热销</span>
-
                 @{{# } }}
             </script>
             <style>

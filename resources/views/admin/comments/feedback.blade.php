@@ -31,10 +31,10 @@
                 dataName: 'data' //数据列表的字段名称，默认：data
             },
             cols: [[ //表头
-                {field: 'id', title: '评论ID'},
+                {field: 'id', title: 'ID'},
                 {field: 'name', title: '姓名'},
                 {field: 'email', title: '邮件'},
-                {field: 'content', title: 'content'},
+                {field: 'content', title: '评论内容'},
                 {field: 'create_time', title: '创建时间', sort: true},
                 {field: 'update_time', title: '最后修改时间', sort: true},
                 {field: 'right', title: '操作', align: 'center', toolbar: '#feedback_status'}

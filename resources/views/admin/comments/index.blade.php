@@ -21,7 +21,7 @@
                 url: 'http://yaf.dtcode.cn/comment/comment/get',
                 page: true,
                 where: {
-                    product_id: 278
+
                 },
                 request: {
                     limitName: 'pageSize'
@@ -36,9 +36,8 @@
                 cols: [[ //表头
                     {field: 'uuid', title: '商品ID'},
                     {field: 'name', title: '商品名'},
-                    {field: 'content', title: 'content'},
-                    {field: 'create_time', title: 'create_time', sort: true},
-                    {field: 'right', title: '操作', align: 'center', toolbar: '#barDemo'}
+                    {field: 'content', title: '评论内容'},
+                    {field: 'create_time', title: '评论时间', sort: true}
                 ]]
             });
         });
