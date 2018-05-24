@@ -116,7 +116,6 @@
     @yield('main')
     <!-- –––––––––––––––[ END PAGE CONTENT ]––––––––––––––– -->
 
-    @include('common.home.area')
     <!-- –––––––––––––––[ FOOTER ]––––––––––––––– -->
     @include('common.home.footer')
     <!-- –––––––––––––––[ END FOOTER ]––––––––––––––– -->

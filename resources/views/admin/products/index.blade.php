@@ -54,7 +54,7 @@
                         {field: 'name', title: '产品名称'},
                         {field: 'thumb', title: '缩略图', templet: '#thumb', style: 'height: 90px'},
                         {field: 'price_original', title: '原价', sort: true},
-                        {field: 'price', title: '售价', sort: true},
+                        {field: 'price', title: '现价', sort: true},
                         /*  {field: 'create_time', title: '收藏数', sort: true},
                          *   {field: 'updated_at', title: '最后修改时间', sort: true},
                          * */

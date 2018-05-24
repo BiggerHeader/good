@@ -117,14 +117,6 @@
                         @endforeach
                     </div>
 
-                    <!-- Page Pagination -->
-                    <div class="page-pagination text-center mt-30 p-10 panel">
-                        <nav>
-                            {{ $categoryProducts->appends(request()->only('orderBy'))->links() }}
-                        </nav>
-                    </div>
-                    <!-- End Page Pagination -->
-
                 </section>
 
             </div>

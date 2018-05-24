@@ -10,7 +10,7 @@
                         <li><a href="{{url('/feedback')}}"><i class="fa fa-question-circle"></i>意见反馈</a>
                         </li>
                         <li style="left: 350px;font-size: 20px;">
-                            <span style="font-size: larger;">大学生二手交易市场</span>
+                            <span style="font-size: larger;">大学生网上二手市场</span>
                         </li>
                     </ul>
                 </div>

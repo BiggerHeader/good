@@ -25,13 +25,6 @@
                         @endforeach
 
                     </div>
-                    <div class="page-pagination text-center mt-30 p-10 panel">
-                        <nav>
-                            <!-- Page Pagination -->
-                            {{ $categories->links() }}
-                            <!-- End Page Pagination -->
-                        </nav>
-                    </div>
                 </section>
             </div>
         </div>

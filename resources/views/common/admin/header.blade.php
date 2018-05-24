@@ -1,6 +1,6 @@
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
-        <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="{{ url('admin') }}">大学生二手购物市场</a>
+        <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="{{ url('admin') }}">大学生网上二手市场后台</a>
             <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="{{ url('admin') }}">MondayShop</a> <a
                     aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 

@@ -14,19 +14,10 @@
                             <a href="{{ url('/user/setting') }}">
                                 <img src="{{ $userPresenter->getAvatarLink($user->avatar) }}">
                             </a>
-                            <em class="s-name">{{ $user->name }}<span class="vip1"></span></em>
+                            <em class="s-name">{{ $user->name }}</em>
 
                         </div>
-                        <div class="m-right">
-                            <!--
-                            <div class="m-new">
-                                <a href="#"><i class="am-icon-bell-o"></i>消息</a>
-                            </div>
-                            -->
-                            <div class="m-address">
-                                <a href="{{ url('/user/addresses') }}" class="i-trigger">我的收货地址</a>
-                            </div>
-                        </div>
+
                     </div>
 
                 </div>
@@ -35,8 +26,8 @@
                 <!--订单 -->
                 <div class="m-order">
                     <div class="s-bar">
-                        <i class="s-icon"></i>我的订单
-                        <a class="i-load-more-item-shadow" href="{{ url('/user/orders') }}">全部订单</a>
+                        <i class="s-icon"></i>我的消息
+                   {{--     <a class="i-load-more-item-shadow" href="{{ url('/user/orders') }}">全部订单</a>--}}
                     </div>
                     <ul>
                         <li><a href="{{ url('/home/cars') }}"><i><img src="{{ asset('assets/user/images/send.png') }}"/></i><span>购物车<em class="m-num">{{ $user->cars->count() }}</em></span></a></li>
