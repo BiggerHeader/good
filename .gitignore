@@ -1,6 +1,5 @@
 /node_modules
 /public/hot
-/public/storage
 /resources/views/templates
 /storage/app/public
 /storage/framework/cache
